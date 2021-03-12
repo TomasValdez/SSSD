@@ -1,0 +1,76 @@
+/*PAGE INDEX*/
+
+*:before,
+*:after {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    background-color: rgba(131, 128, 128, 0.377);
+}
+
+.line-menu {
+    height: 3rem;
+    border-bottom: 2px solid rgb(197, 197, 197);
+}
+
+header {
+    margin: 0px 0px;
+    padding: 0px 0px;
+}
+
+.logo-head {
+    position: relative;
+    max-width: 100%;
+    min-width: 500px;
+    max-height: 40%;
+    min-height: 20%;
+}
+
+.logo-head .img-logo {
+    position: absolute;
+    width: 40%;
+    width: 60rem;
+    top: 5px;
+    left: 15%;
+}
+
+.menu-div {
+    display: inline-block;
+    width: 98%;
+    background-color: rgba(4, 90, 64, 0.9);
+    margin-left: 0px;
+    padding: 10px;
+    text-align: center;
+}
+
+.menu-div a {
+    display: inline-block;
+    width: 200px;
+    font-size: 1.2rem;
+    margin: 10px 0px 10px;
+    color: rgb(211, 214, 213);
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.menu-div a:hover {
+    color: rgb(163, 238, 192);
+}
+
+.img-page-consts {
+    position: absolute;
+    left: 20%;
+}
+
+
+/*PAGE EMPOYEE*/
+
+.title-div {
+    background-color: rgba(176, 177, 177, 0.5);
+    height: 80px;
+    text-align: center;
+    font-size: 40px;
+}

@@ -1,0 +1,92 @@
+html {
+    margin: 0px 0px;
+    padding: 0px 0px;
+    outline: 0px;
+}
+
+.name-title {
+    color: rgba(58, 57, 57, 0.897);
+    background-color: rgba(209, 207, 207, 0.329);
+    font-size: 20px;
+}
+
+.label-option {
+    margin-top: 1rem;
+    margin-bottom: 1rm;
+}
+
+.grid-main {
+    display: grid;
+    grid-template-columns: 350px 350px 350px;
+    align-items: flex-end;
+    grid-gap: 80px;
+}
+
+.content-card {
+    position: relative;
+    width: 200px;
+    height: 150px;
+    border-radius: 0.85rem;
+    /*
+    background-color: var(--color-tarjet);
+    */
+    border: 3px solid rgba(35, 13, 160, 0.527);
+    margin-top: 5px;
+    /*
+    box-shadow: 3px 3px red, -1em 0 0.4em olive;
+    */
+    box-shadow: 1px 1px 1px 1px rgba(22, 21, 21, 0.7);
+}
+
+.heard-card {
+    margin: 5px;
+    font-family: 'Krona One', sans-serif;
+    color: white;
+}
+
+.heard-card {
+    position: absolute;
+    font-family: 'Krona One', sans-serif;
+    border-bottom: 1px solid rgb(226, 219, 218)!important;
+    background-color: rgb(65, 78, 240);
+    text-align: center;
+    outline: 0ch;
+}
+
+ul {
+    position: absolute;
+    left: 5%;
+    overflow: hidden;
+    margin-top: 35px;
+    font-family: 'Pragati Narrow', sans-serif;
+}
+
+li {
+    margin-bottom: 1px;
+}
+
+input[type="submit"] {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(255, 255, 255);
+    width: 9em;
+    height: 2.6em;
+    position: absolute;
+    bottom: 10px;
+    background-color: rgb(20, 47, 172);
+    right: 5%;
+}
+
+textarea {
+    position: absolute;
+    width: 60%;
+    height: 50px;
+    margin-left: 5px;
+    top: 40%;
+}
+
+@media screen and (max-width: 900px) {
+    .grid-main {
+        display: flex;
+        flex-direction: column;
+    }
+}
