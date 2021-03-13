@@ -6,53 +6,22 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" href="../Source/css/oficial2.css">
+   <link rel="stylesheet" href="../oficial.css">
    <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Pragati+Narrow&display=swap" rel="stylesheet">    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
 
     <title>Cenidet  solicitud</title>
   </head>
   <body>              
- <?php 
-
-  include '../Model/conecct.php';
-
-    $con=new Connection_db();
-
-            $correo=$_POST["Mail"];
-
-    if (!isset($_POST["Mail"]) || ($correo=="")){
-        header("location:registerMail.php");
-    }
-    else  if (isset($_POST["Mail"]) && ($correo!=="")){
-        $sql=$con->conexion();
-
-            $resul=$sql->query("CALL Veref('{$correo}');");
-            while ($fila=mysqli_fetch_assoc($resul)){
-           
-                switch ($fila["v"]){
-                    case "No":
-                        header("location:registerMail.php"); 
-                     break;
-                }
-                break;
-            }
-     
-            $sql->close();  
-   } 
-
-  ?>
+    
     <header> <div class="name-title">SOLICITUD DE MANTENIMIENTO</div></header>
     <div class="label-option"><strong>Elija alguno de los siguientes casos</strong></div>
         <div class="grid-main">
 
 
                     <div class="content-card">
-                        <form method="POST" action="../Controller/sendMail.php">
                             
                         <input type="hidden" name="solicitud" value="Equipo de cómputo">   
-                            <input type="hidden" name="mail" value="<?php echo $correo ?>"> 
-                            
                             <div class="heard-card" >Equipo de cómputo: </div>
                             
                                 <ul>
@@ -70,10 +39,8 @@
                     </div>
             
                     <div class="content-card">
-                        <form method="POST" action="../Controller/sendMail.php">
                             <input type="hidden" name="solicitud" value="Impresora">
-                            <input type="hidden" name="mail" value="<?php echo $correo ?>">  
-        
+               
                             <div class="heard-card">Impresora: </div>
                                 <ul>
                                     <li> Se atoró el papel</li>
@@ -88,11 +55,9 @@
 
                     <div class="content-card">
 
-                     <form method="POST" action="../Controller/sendMail.php">
-                        <input type="hidden" name="solicitud" value="Software">   
-                        <input type="hidden" name="mail" value="<?php echo $correo ?>">
-                        <div class="heard-card">Software: </div>
-                        <div class="list-problem">  
+                            <input type="hidden" name="solicitud" value="Software">   
+                            <div class="heard-card">Software: </div>
+                            <div class="list-problem">  
                             <ul>
                                 <li>licencias para usar programas</li>
                                 <li>instalación/desinstalación de programas, etc.</li>
@@ -104,9 +69,7 @@
 
                     <div class="content-card">
 
-                      <form method="POST" action="../Controller/sendMail.php">
                         <input type="hidden" name="solicitud" value="Internet">   
-                        <input type="hidden" name="mail" value="<?php echo $correo ?>"> 
                         <div class="heard-card" >Internet: </div>
                         <div class="list-problem">  
             
@@ -121,9 +84,7 @@
 
                 
                     <div class="content-card">
-                        <form method="POST" action="../Controller/sendMail.php">
                         <input type="hidden" name="solicitud" value="Telefono">   
-                        <input type="hidden" name="mail" value="<?php echo $correo ?>"> 
                         
                             <div class="heard-card">Teléfonía: </div>
                             <div class="list-problem">  
@@ -136,10 +97,8 @@
                     </div>
 
                     <div class="content-card">
-                        <form method="POST" action="../Controller/sendMail.php">
                         <input type="hidden" name="solicitud" value="SI">   
-                        <input type="hidden" name="mail" value="<?php echo $correo ?>"> 
-    
+                
                             <div class="heard-card">SII: </div>
                             <ul>
                                 <li>olvido de contraseña</li>
@@ -151,10 +110,8 @@
                     </div>
 
                     <div class="content-card">
-                        <form method="POST" action="../Controller/sendMail.php">
-                            <input type="hidden" name="solicitud" value="Otro">  
-                            <input type="hidden" name="mail" value="<?php echo $correo ?>">  
-    
+                         <input type="hidden" name="solicitud" value="Otro">  
+            
                                 <div class="heard-card">Otro: </div>
                                 <div class="list-problem"> 
                                 <ul>

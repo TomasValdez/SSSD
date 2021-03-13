@@ -27,16 +27,16 @@ body {
         <h5 class="modal-title" id="exampleModalLabel">Ingresar</h5>
         </div>
       <div class="modal-body">
-        <form method="POST" action="cards2.php">
+        <form method="POST" action="../Model/validar.php">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Correo</label>
            
-            <input type="text" name="Mail" class="form-control" id="recipient-name">
+            <input type="text" name="mail" class="form-control" id="recipient-name">
           </div>
         
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Entrar</button>
+        <input type="submit" class="btn btn-primary"></input>
         
         </form>
       </div>
