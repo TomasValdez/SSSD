@@ -1,3 +1,5 @@
+<?php $form="<form action=\"../Controller/sendMail.php\" method=\"POST\"> ";
+$form2="</form>";?>
 <!DOCTYPE html>
 
 <!doctype html>
@@ -20,7 +22,7 @@
 
 
                     <div class="content-card">
-                            
+                            <?php echo $form ?>
                         <input type="hidden" name="solicitud" value="Equipo de cómputo">   
                             <div class="heard-card" >Equipo de cómputo: </div>
                             
@@ -34,11 +36,13 @@
                     
                                 <input  type="submit" value="Solicitar">
                     
-                            </form>
+                                <?php echo $form2="</form>";?>
                 
                     </div>
             
                     <div class="content-card">
+                    
+                     <?php echo $form ?>
                             <input type="hidden" name="solicitud" value="Impresora">
                
                             <div class="heard-card">Impresora: </div>
@@ -50,11 +54,12 @@
                                 </ul>
                                 
                                 <input type="submit" value="Solicitar">
-                        </form>
+                                <?php echo $form2="</form>";?>
                     </div>
 
                     <div class="content-card">
-
+                            
+                             <?php echo $form ?> 
                             <input type="hidden" name="solicitud" value="Software">   
                             <div class="heard-card">Software: </div>
                             <div class="list-problem">  
@@ -64,11 +69,12 @@
                                 </ul>
                             </div>
                             <input  type="submit" value="Solicitar"></form>
-                        </form>
+                            <?php echo $form2="</form>";?>
                     </div>
 
                     <div class="content-card">
-
+                        
+                     <?php echo $form ?>
                         <input type="hidden" name="solicitud" value="Internet">   
                         <div class="heard-card" >Internet: </div>
                         <div class="list-problem">  
@@ -78,12 +84,15 @@
                                 <li>no abre algunas páginas, etc.</li>
                             </ul>
                         </div>
-                            <input  type="submit" value="Solicitar"></form>
+                            <input  type="submit" value="Solicitar">   
+                            <?php echo $form2="</form>";?>
                     
                     </div>
 
                 
                     <div class="content-card">
+                    
+                         <?php echo $form ?>
                         <input type="hidden" name="solicitud" value="Telefono">   
                         
                             <div class="heard-card">Teléfonía: </div>
@@ -93,10 +102,13 @@
                                 <li>no hay línea cambio de nombre asignación de número.</li>
                             </ul>
                         </div>
-                            <input  type="submit" value="Solicitar"></form>
+                            <input  type="submit" value="Solicitar">
+                            <?php echo $form2="</form>";?>
                     </div>
 
                     <div class="content-card">
+                    
+                         <?php echo $form ?>
                         <input type="hidden" name="solicitud" value="SI">   
                 
                             <div class="heard-card">SII: </div>
@@ -106,10 +118,13 @@
                                 <li>no almacena información, etc.</li>
                             </ul>
                             
-                            <input  type="submit" value="Solicitar"></form>
+                            <input  type="submit" value="Solicitar">
+                            <?php echo $form2="</form>";?>
                     </div>
 
                     <div class="content-card">
+                    
+                             <?php echo $form ?>
                          <input type="hidden" name="solicitud" value="Otro">  
             
                                 <div class="heard-card">Otro: </div>
@@ -120,7 +135,8 @@
                                 <textarea placeholder="Escribe mas detallado su problema" name="otro"></textarea>
                         
                                 </div>
-                            <input  type="submit" value="Solicitar"></form>
+                            <input  type="submit" value="Solicitar">
+                            <?php echo $form2="</form>";?>
                     </div>
         </div>
 

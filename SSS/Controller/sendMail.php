@@ -17,14 +17,17 @@
     use PHPMailer\PHPMailer\Exception;
     
     // Instantiation and passing `true` enables exceptions
+
     $type_Ser=$_POST['solicitud'];
-    $mailUser=$_POST['mail'];
- 
+    session_start();
+
+    $mailUser=$_SESSION['mail'];
     $mail = new PHPMailer(true);
 
       $conection=new Connection_db();
       include '../Controller/Tokens.php';
-      $token=obtenToken();
+      $token=obtenToken
+      ();
 
       if ($idre=$conection->registration_request($type_Ser,$mailUser,$token)){
     
@@ -59,7 +62,7 @@
         Registro exito, Verefique fu correo para activar la solicitud
        </div>';
     //crear el url para que podamos
-        
+          session_destroy();
           $mail->send();
           echo 'Message has been sent';
           echo "header(location:AlertMail.php)";
