@@ -1,0 +1,89 @@
+/* ----------------------------------------------------*/
+
+body {
+    background-image: url("../img/agula.png");
+    background-size: cover;
+}
+
+.log-main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container-form {
+    width: 500px;
+    height: 300px;
+    display: grid;
+    grid-template-columns: 200px 100px;
+    grid-template-rows: 200px;
+    background-color: rgb(19, 2, 116);
+    border-radius: 10px;
+}
+
+.item:nth-child(1) {
+    position: relative;
+    background-color: rgb(240, 238, 235);
+    clip-path: circle(130px at left);
+    width: 200px;
+    height: 300px;
+}
+
+.logo-tecn {
+    position: absolute;
+    background-image: url(../img/tecnm.png);
+    background-size: 64%;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 300px;
+    right: 0%;
+    top: 30%;
+    text-justify: distribute-all-lines;
+    animation-name: example;
+    animation-duration: 1s;
+}
+
+.item:nth-child(2) {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.header_mail {
+    position: absolute;
+    padding: 50px;
+    color: rgb(255, 255, 255);
+}
+
+.text-mail {
+    position: absolute;
+    top: 40%;
+    left: 5%;
+}
+
+.text-mail,
+input {
+    width: 250px;
+    height: 30px;
+    border-radius: 6px;
+}
+
+#submi {
+    position: absolute;
+    width: 100px;
+    height: 25px;
+    bottom: 10%;
+    left: 20%;
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+}
+
+@keyframes example {
+    from {
+        left: 70%;
+    }
+    to {
+        left: 0%;
+    }
+}
