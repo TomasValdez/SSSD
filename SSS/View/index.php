@@ -22,7 +22,7 @@
 <div class="line-menu"></div>
     <div class="menu-div">
     <a href="Login.php">SOLICITUD</a>
-    <a href="empleado.php">DOCENTE</a>
+    <a href="LoginTec.php">DOCENTE</a>
     <a href="listSolic.php">LISTA SOLICITUDES</a>
     <a href="#">LIBERACION</a>
     </div>
