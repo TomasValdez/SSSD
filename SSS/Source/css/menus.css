@@ -1,0 +1,149 @@
+body{
+ 
+    font-family: sans-serif;
+    letter-spacing: 0.03em;
+    line-height: 1.6;
+    font-family: 'Open Sans', sans-serif;
+}
+.header{
+    height: auto;
+    width: auto;
+    background-color: rgb(63, 56, 156);
+}
+.title{
+    text-align: center;
+    font-size: 40px;
+    color: #201e1e;
+    margin-top: 100px;
+    font-weight: 100;
+    font-family: 'Roboto', sans-serif;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+
+.container{
+   
+    width: 100%;
+    max-width: 1200px;
+    height: 430px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+  
+}
+
+.container .card{
+    width: 330px;
+    height: 430px;
+    border-radius: 8px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin: 20px;
+    text-align: center;
+    transition: all 0.25s;
+}
+
+.container .card:hover{
+    transform: translateY(-15px);
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
+}
+
+.container .card img{
+    width: 330px;
+    height: 220px;
+}
+.img-header{
+    height: 300px;
+    width: 1500px;
+}
+
+.container .card h4{
+    font-weight: 600;
+}
+
+.container .card p{
+    padding: 0 1rem;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.container .card a {
+    font-weight: 500;
+    text-decoration: none;
+    color: rgb(52, 152, 219);
+}
+.logo-head {
+    display: grid;
+    max-width: 100%;
+    min-width: 500px;
+    max-height: 40%;
+    min-height: 20%;
+    grid-template-columns: 400px 200px 445px 400px;
+    grid-template-rows: 200px;
+    position: relative;
+   
+}
+.logo-head,
+.logo-item{
+    background-color: rgba(23, 10, 141, 0.9);
+    color: rgb(255, 255, 255);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-shadow: -2px 5px 4px black;
+}
+.img-logo {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    top: 15px;
+    left: 33%;
+   
+}
+.text-item1{
+    margin-left: 25px;
+    text-align: justify;
+    top: 20px;
+    left: 65%;
+}
+.text-item2{
+    margin-left: 25px;
+    text-align: justify;
+    top: 20px;
+    left: 150%;
+}
+.img-logo2 {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    top: 15px;
+    left: 45%;
+   
+}
+.line-menu {
+    height: 3rem;
+}
+
+.line-men,
+a {
+    font-family: 'Anton', sans-serif;
+}
+.menu-div {
+    display: inline-block;
+    width: 98%;
+    background-color: rgba(23, 10, 141, 0.9);
+    margin-left: 0px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.menu-div a {
+    display: inline-block;
+    width: 200px;
+    font-size: 1.2rem;
+    margin: 10px 0px 10px;
+    color: rgb(211, 214, 213);
+    text-decoration: none;
+   
+}
+
