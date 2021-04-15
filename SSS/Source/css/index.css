@@ -17,9 +17,10 @@ a {
     font-family: 'Anton', sans-serif;
 }
 
-header {
-    margin: 0px 0px;
-    padding: 0px 0px;
+.header{
+    height: auto;
+    width: auto;
+    background-color: rgb(63, 56, 156);
 }
 
 .logo-head {
@@ -28,13 +29,13 @@ header {
     min-width: 500px;
     max-height: 40%;
     min-height: 20%;
-    grid-template-columns: 400px 250px 600px;
-    grid-template-rows: 100px;
+    grid-template-columns: 400px 200px 445px 400px;
+    grid-template-rows: 200px;
     position: relative;
 }
 
 .logo-head,
-.logo-item:nth-child(1) {
+.logo-item{   
     background-color: rgba(23, 10, 141, 0.9);
     text-align: right;
     justify-items: center;
@@ -46,12 +47,31 @@ header {
 
 .img-logo {
     position: absolute;
-    width: 170px;
-    height: 170px;
-    top: 5px;
-    left: 40%;
+    width: 160px;
+    height: 160px;
+    top: 15px;
+    left: 33%;
 }
-
+.text-item1{
+    margin-left: 25px;
+    text-align: justify;
+    top: 20px;
+    left: 65%;
+}
+.text-item2{
+    margin-left: 25px;
+    text-align: justify;
+    top: 20px;
+    left: 150%;
+}
+.img-logo2 {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    top: 15px;
+    left: 45%;
+   
+}
 .menu-div {
     display: inline-block;
     width: 98%;

@@ -8,23 +8,23 @@
 
 <body>
 
-<div  class="logo-head"> 
-        <div clas="logo-item"><h2>CENTRO NACIONA DE INVESTIGACION
-        Y DESARROLO TECNOLOGICO</h2></div>
-        <div clas="logo-item"><a href="https://cenidet.tecnm.mx/">  
+<div  class="logo-head" > 
+        <div class="text-item1"><h2>CENTRO NACIONAL DE INVESTIGACION Y DESARROLLO TECNOLOGICO</h2></div>
+        <div ><a href="https://cenidet.tecnm.mx/">  
         <img src="../Source/img/tecnm.png" class="img-logo"></a></div>
-        <div clas="logo-item"><h2>INSTITUTO TECNOLOGICO DE MEXICO</h2></div>
+        <div ><a href="https://cenidet.tecnm.mx/">  
+        <img src="../Source/img/ce_log.jpg" class="img-logo2"></a></div>
+        <div class="text-item2"><h2>INSTITUTO TECNOLOGICO NACIONAL DE MEXICO</h2></div>
 </div>
-
-
 
 <header>
 <div class="line-menu"></div>
     <div class="menu-div">
     <a href="Login.php">SOLICITUD</a>
-    <a href="LoginTec.php">DOCENTE</a>
-    <a href="listSolic.php">LISTA SOLICITUDES</a>
+    <a href="listSolic.php">LISTA DE SOLICITUDES</a>
     <a href="#">LIBERACION</a>
+    <a href="LoginTec.php">TECNICO</a>
+  
     </div>
 </header>
 

@@ -1,3 +1,6 @@
+<?php $form="<form action=\"../Controller/sendMail.php\" method=\"POST\"> ";
+$form2="</form>";?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,11 +41,13 @@
     <div class="container" >
        
         <div class="card">
+        <?php echo $form ?>
             <img src="../Source/img/PC.jpg">
             <h4>Equipo de Computo</h4>
             <p><li>No enciende el equipo</li>
             <li>Ruidos extraños</li></p>
-            <a href="Solicitud.php">Solicitar</a>
+            <input class="boton_personalizado" type="submit" value="Solicitar">
+            <?php echo $form2="</form>";?>
         </div>
         
         <div class="card">
