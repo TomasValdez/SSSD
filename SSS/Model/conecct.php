@@ -4,7 +4,7 @@ class Connection_db{
 
     function conexion(){
     
-        $mysqli = new mysqli("localhost", "root", "c0cac0la", "solicitud");
+        $mysqli = new mysqli("localhost", "root", "", "prueba");
 
 
             if ($mysqli->connect_errno) {

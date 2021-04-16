@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<link rel="icon" type="img/jpg" href="../Source/img/icon.jpg">   
 <link rel="stylesheet" href="../Source/css/lista.css">
-<link rel="icon" type="img/jpg" href="../Source/img/icon.jpg">
-<head>
-    <title></title>
-</head>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
 
 <body>
 
-<div  class="logo-head"> 
+<div  class="logo-head" > 
         <div class="text-item1"><h2>CENTRO NACIONAL DE INVESTIGACION Y DESARROLLO TECNOLOGICO</h2></div>
         <div ><a href="https://cenidet.tecnm.mx/">  
         <img src="../Source/img/tecnm.png" class="img-logo"></a></div>

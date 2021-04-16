@@ -1,8 +1,8 @@
+ Create database solicitud;
+
  use solicitud;
 
--- -----------------------------------------------------
--- Table `solicitud`.`empleado`
--- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS `empleado` (
   `idEmpleado` INT NOT NULL,
   `idTecnico`int ,
@@ -17,9 +17,7 @@ CREATE TABLE IF NOT EXISTS `empleado` (
 ENGINE = InnoDB;
 
 
--- -----------------------------------------------------
--- Table `solicitud`.`estudiante`
--- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS `estudiante` (
   `idEstudiante` INT NOT NULL,
   `Nombre` VARCHAR(40) NOT NULL,
@@ -32,10 +30,7 @@ ENGINE = InnoDB;
 
 
 
--- -----------------------------------------------------
--- Table `mydb`.`Registro`
--- -----------------------------------------------------
-drop table Registro2;
+
 CREATE TABLE IF NOT EXISTS `Registro2` (
   `idRegistro` INT auto_increment,
   `CorreoSolic` varchar(30),
@@ -51,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `Registro2` (
   foreign key(idTecnico) references Tecnico(idTecnico))
 ENGINE = InnoDB;
 
-drop table registro2;
+
 
 
  
