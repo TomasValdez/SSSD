@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <link rel="icon" type="img/jpg" href="../Source/img/icon.jpg">   
-<link rel="stylesheet" href="../Source/css/lista.css">
+<link rel="stylesheet" href="../Source/css/lists.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
