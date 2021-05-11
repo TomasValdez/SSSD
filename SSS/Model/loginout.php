@@ -1,8 +1,9 @@
 <?php
     session_start();
-    $_SESSION['mail'];
+    $_SESSION['mailt'];
 
     session_reset();
     session_destroy();
+  
 
-    header("location:../View/LoginTec.php");
+

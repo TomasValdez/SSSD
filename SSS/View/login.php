@@ -1,50 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<?php 
 
+
+    session_start();
+
+    if (isset($_SESSION['mail'])) {
+        session_reset();
+    }
+
+    require "../include/login-banner.php";
+    
+?>
+
+
+                                                                  
+<script >
+                    const clickSend = document.getElementById("submi");
+                    const divLoad =   document.getElementById("circle-load");
+
+    clickSend.addEventListener('click', function(e) {
+    e.preventDefault();
   
-    <meta charset="UTF-8">
-    <title>Login / Sistema Solicitudes de Servicio</title>
+    clickSend.classList.replace("idbutton", "idbutton-no");
+
+    divLoad.classList.replace("vis-circle-no","vis-circle");
     
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    
-    
-    <link rel="stylesheet" href="../Source/icon/log_Style.css">
-    <link rel="stylesheet" href="../Source/css/css/log_Style.css">
-    
-</head>
-<body>
-    
-<div class="container-form">
-        <div class="header">
-            <div class="logo-title">
-                <img src="../Source/img/logo.jpg" alt="">
-                <h2>Cenidet</h2>
-            </div>
-            <div class="menu">
-                
-            </div>
-        </div>
+
+    $.ajax({
+        url: "../Model/validar2.php",
+        type:"POST",
+        data:$("#form").serialize(),
+        success: function(result) {
+
+            var json = JSON.parse(result);
+
+            if (json.success == true) {
+                window.location.assign("../View/cards.php");
+        } else {
+            clickSend.classList.replace( "idbutton-no","idbutton");
+            divLoad.classList.replace("vis-circle","vis-circle-no");
+            }
+
+        }
         
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" class="form">
-            <div class="welcome-form"><h1>Bienvenido</h1><h2>SSS</h2></div>
-            <div class="user line-input">
-                <label class="lnr lnr-user"></label>
-                <input type="text" class="form-control" placeholder="Correo Electronico" name="mail"id="recipient-name">
-            </div>
-            
-            
-             <?php if(!empty($error)): ?>
-            <div class="mensaje">
-                <?php echo $error; ?>
-            </div>
-            <?php endif; ?>
-            
-            <button type="submit" class="btn btn-primary">Entrar<label class="lnr lnr-chevron-right"></label></button>
-        </form>
-    </div>
-    
-    <script src="js/jquery.js"></script>
-    <script src="js/script.js"></script>
+
+    });
+  });
+</script>    
+                        
 </body>
 </html>

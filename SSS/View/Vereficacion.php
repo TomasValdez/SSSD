@@ -15,36 +15,21 @@
 <?php
   include '../Model/conecct.php';
 
-  if (!isset($_GET["token"]) ){
+  if (!isset($_GET["mail"]) ){
   header ("location:http://localhost:8066/Cenedit/View/registerMail.php");
   }else{
 
-  $token =$_GET["token"];
+  $mail =$_GET["mail"];
   $con=new Connection_db();
   $sql=$con->conexion();
 
-            $resul=$sql->query("CALL Activacion('{$token}');");
-            while ($fila=mysqli_fetch_row($resul)){
-           
-              switch($fila[1]){
-                case 1:
-                  echo '<div class="alert alert-success" role="alert"> '.$fila[0].'  </div>';
-            
-                  break;
-                case 2:
-                  echo '<div class="alert alert-warning" role="alert"> '.$fila[0].'  </div>';
-            
-                  break;
-                case 3:
-                  echo '<div class="alert alert-danger" role="alert"> '.$fila[0].'  </div>';
-             
-                  break;
+            $ex=$sql->prepare("CALL Activacion('{$mail}')");
+              if ($ex->execute()){
+                echo '<div class="alert alert-success" role="alert"> Activado  </div>';
+              }else{
+                echo '<div class="alert alert-success" role="alert"> No Activado  </div>  ';
+              }
 
-              } 
-             
-               
-            }
- $sql->close();
  }
  
 ?>

@@ -1,39 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<?php require "../include/login-banner.php";?>
 
-  
-    <meta charset="UTF-8">
-    <title>Login / Sistema Solicitudes de Servicio</title>
-    
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    
-    <link rel="stylesheet" href="../Source/css/login.css">
-    
-</head>
-<body>
-    <div class="log-main">
-        <div class="container-form">
+<script>
+    const clickSend = document.getElementById("submi");
+                    const divLoad =   document.getElementById("circle-load");
+clickSend.addEventListener('click', function(e) {
+    e.preventDefault();
+      
+    clickSend.classList.replace("idbutton", "idbutton-no");
 
-            <div class="item">
-            <div class="logo-tecn">
+    divLoad.classList.replace("vis-circle-no","vis-circle");
+    
+
+    $.ajax({
+        url: "../Model/validarTec2.php",
+        type:"POST",
+        data:$("#form").serialize(),
+        success: function(result) {
+            
+            var json = JSON.parse(result);
+
+            if (json.success == true) {
+               // alert( "Correo localizado");
+                window.location.assign("../View/Docente-Lab.php");
+            } else {
                 
-            </div>
+                clickSend.classList.replace( "idbutton-no","idbutton");
+             divLoad.classList.replace("vis-circle","vis-circle-no");
             
+            }
             
-            </div>
+        }        
+        
+    });
+});
 
-                    <div class="item"> 
-                        <div class="header_mail"> INGRESE CORREO</div>
-
-                        <form method="POST" action="../Model/validarTec.php">                        
-                        <div class="text-mail"  ><input type="text" name="mail" maxlength="30"></div>
-                                
-                        <input  type="submit" id="submi" value="ENTRAR">
-                        </form>                 
-            </div>
-        </div>
-    </div>
-
+</script>
 </body>
 </html>
