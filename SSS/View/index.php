@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="../Source/css/index.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
 <head><title>index</title></head>
 
 <body>
@@ -33,7 +34,7 @@
 
 </div>
 </body>
-<!-- <footer><div class="content-footer">
+<footer><div class="footer">
     <li>REDES SOLCIALES</li>
 </div>
 <div>
@@ -54,5 +55,5 @@
                   	<p>www.cenidet.edu.mx</p>
                 </div></div>   
 </footer>
--->
+
 </html>

@@ -5,15 +5,22 @@ $txtID=(isset($_POST['txtID'])?$_POST['txtID']:"");
 $txtNombre=(isset($_POST['txtNombre'])?$_POST['txtNombre']:"");
 $txtCorreo=(isset($_POST['txtCorreo'])?$_POST['txtCorreo']:"");
 $txtFoto=(isset($_POST['txtFoto'])?$_POST['txtFoto']:"");
+
 $accion=(isset($_POST['accion'])?$_POST['accion']:"");
 
 include("../Conexion/Conexion.php");
 
+
+
 switch($accion){
     case"btnAgregar":
-        echo $txtID;
-         echo"presionaste btn presionar";
-        break;
+        $sentencia=$pdo->prepare("INSERT INTO tecnicos(nombreTecnico,correoTecnico,fotoTecnico) VALUES(:nombreTecnico,:correoTecnico,:fotoTecnico)");
+       
+        $sentencia->bindParam(':nombreTecnico',$txtNombre);
+        $sentencia->bindParam(':correoTecnico',$txtCorreo);
+        $sentencia->bindParam(':fotoTecnico',$txtFoto);
+        $sentencia->execute();
+     break;
 
         case"btnModificar":
             echo"presionaste btn Modificar";
@@ -28,6 +35,12 @@ switch($accion){
                     break;
 
 }
+
+$sentencia=$pdo->prepare("SELECT * FROM `tecnicos` WHERE 1");
+$sentencia->execute();
+$listaTecnicos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+print_r($listaTecnicos);
 
 ?>
 <!DOCTYPE html>

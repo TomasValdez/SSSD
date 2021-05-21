@@ -115,3 +115,8 @@ a {
     text-align: center;
     font-size: 40px;
 }
+
+.footer{
+    margin-top:20px;
+    background-color: (23, 10, 141, 0.9);
+}
