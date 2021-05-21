@@ -7,6 +7,8 @@ $txtCorreo=(isset($_POST['txtCorreo'])?$_POST['txtCorreo']:"");
 $txtFoto=(isset($_POST['txtFoto'])?$_POST['txtFoto']:"");
 $accion=(isset($_POST['accion'])?$_POST['accion']:"");
 
+include("../Conexion/Conexion.php");
+
 switch($accion){
     case"btnAgregar":
         echo $txtID;

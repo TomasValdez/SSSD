@@ -9,22 +9,19 @@
 <body>
 
 <div  class="logo-head" > 
-        <div class="text-item1"><h2>CENTRO NACIONAL DE INVESTIGACION Y DESARROLLO TECNOLOGICO</h2></div>
+        <div class="text-item1"><h2>Tecnológico Nacional De Mexico</h2></div>
         <div ><a href="https://cenidet.tecnm.mx/">  
         <img src="../Source/img/tecnm.png" class="img-logo"></a></div>
         <div ><a href="https://cenidet.tecnm.mx/">  
         <img src="../Source/img/ce_log.jpg" class="img-logo2"></a></div>
-        <div class="text-item2"><h2>INSTITUTO TECNOLOGICO NACIONAL DE MEXICO</h2></div>
+        <div class="text-item2"><h2>Centro Nacional De Investigación y Desarrollo Tecnológico</h2></div>
 </div>
 
 <header>
 <div class="line-menu"></div>
     <div class="menu-div">
-    <a href="LoginOPC.php">SOLICITUD</a>
-    <a href="listSolic.php">LISTA DE SOLICITUDES</a>
-    <a href="#">LIBERACION</a>
-    <a href="LoginTec.php">TECNICO</a>
-  
+    <a href="LoginOPC.php">Solicitar</a>
+    <a href="listSolic.php">Lista de solicitudes</a>
     </div>
 </header>
 
@@ -33,8 +30,6 @@
 <img src="../Source/img/servicio.png">
 </div>
 
-
-EL L.I. ESTEBAN BUENO ES EL REPONSABLE DE ATENDER LA RESERVACION DEL AUDITORIO
 
 </div>
 </body>
