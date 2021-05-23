@@ -20,13 +20,48 @@ switch($accion){
         $sentencia->bindParam(':correoTecnico',$txtCorreo);
         $sentencia->bindParam(':fotoTecnico',$txtFoto);
         $sentencia->execute();
+
+        echo $txtID;
+        echo"presionaste bnt agregar";
      break;
 
         case"btnModificar":
+
+        $sentencia=$pdo->prepare("UPDATE tecnicos 
+        SET nombreTecnico=:nombreTecnico,
+        correoTecnico=:correoTecnico,
+        fotoTecnico=:fotoTecnico
+        WHERE idTecnico=:idTecnico");
+        
+       
+        $sentencia->bindParam(':nombreTecnico',$txtNombre);
+        $sentencia->bindParam(':correoTecnico',$txtCorreo);
+        $sentencia->bindParam(':fotoTecnico',$txtFoto);
+        $sentencia->bindParam(':idTecnico',$txtID);
+        $sentencia->execute();
+
+        header('Location: index.php');
+
+            echo $txtID;
             echo"presionaste btn Modificar";
             break;
 
             case"btnEliminar":
+
+             $sentencia=$pdo->prepare("UPDATE tecnicos 
+            SET nombreTecnico=:nombreTecnico,
+            correoTecnico=:correoTecnico,
+            fotoTecnico=:fotoTecnico
+            WHERE idTecnico=:idTecnico");
+            
+        
+            $sentencia->bindParam(':nombreTecnico',$txtNombre);
+            $sentencia->bindParam(':correoTecnico',$txtCorreo);
+            $sentencia->bindParam(':fotoTecnico',$txtFoto);
+            $sentencia->bindParam(':idTecnico',$txtID);
+            $sentencia->execute();
+
+
                 echo"presionaste btn Eliminar";
                 break;
 
@@ -59,19 +94,19 @@ print_r($listaTecnicos);
 <form action="" method="post" ectype="multipart/form-data">
 
 <label for="">ID</label>
-<input type="text" name="txtID" placeholder="" id="txtID" require="">
+<input type="text" name="txtID" value="<?php echo $txtID;?>" placeholder="" id="txtID" require="">
 <br>
 
 <label for="">Nombre(s):</label>
-<input type="text" name="txtNombre" placeholder="" id="txtNombre" require="">
+<input type="text" name="txtNombre" value="<?php echo $txtNombre;?>"placeholder="" id="txtNombre" require="">
 <br>
 
 <label for="">Correo Electronico:</label>
-<input type="text" name="txtCorreo" placeholder="" id="txtCorreo" require="">
+<input type="text" name="txtCorreo" value="<?php echo $txtCorreo;?>" placeholder="" id="txtCorreo" require="">
 <br>
 
 <label for="">Foto:</label>
-<input type="text" name="txtFoto" placeholder="" id="txtFoto" require="">
+<input type="text" name="txtFoto" value="<?php echo $txtFoto;?>" placeholder="" id="txtFoto" require="">
 <br>
 
 
@@ -98,7 +133,22 @@ print_r($listaTecnicos);
             <td><?php echo $tecnicos['fotoTecnico'];?></td>
             <td><?php echo $tecnicos['nombreTecnico'];?></td>
             <td><?php echo $tecnicos['correoTecnico'];?></td>
-            <td><input type="button" value="Seleccionar" name="accion"></td>
+            <td>
+            
+            <form action="" method="post">
+
+            <input type="hidden" name="txtID" value="<?php echo $tecnicos['idTecnico'];?>">
+            <input type="hidden" name="txtNombre"value="<?php echo $tecnicos['nombreTecnico'];?>">
+            <input type="hidden" name="txtCorreo"value="<?php echo $tecnicos['correoTecnico'];?>">
+            <input type="hidden" name="txtFoto"value="<?php echo $tecnicos['fotoTecnico'];?>";>
+
+            <input  type="submit" value="Seleccionar" name="accion">
+
+            </form>
+
+            
+            
+            </td>
         </tr>
 
         <?php }?>
