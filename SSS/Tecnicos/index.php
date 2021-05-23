@@ -80,6 +80,32 @@ print_r($listaTecnicos);
 <button value="btnEliminar" type="submit" name="accion">Eliminar</button>
 <button value="btnCancelar" type="submit" name="accion">Cancelar</button>
 </form>
+<div class="row">
+
+    <table>
+        
+        <thead>
+            <tr>
+                <th>Foto</th>
+                <th>Nombre Completo</th>
+                <th>Correo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+    <?php foreach($listaTecnicos as $tecnicos){?>
+
+        <tr>
+            <td><?php echo $tecnicos['fotoTecnico'];?></td>
+            <td><?php echo $tecnicos['nombreTecnico'];?></td>
+            <td><?php echo $tecnicos['correoTecnico'];?></td>
+            <td><input type="button" value="Seleccionar" name="accion"></td>
+        </tr>
+
+        <?php }?>
+    
+    </table>
+
+</div>
 </div>
 
 </body>
