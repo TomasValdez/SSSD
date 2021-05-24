@@ -88,29 +88,80 @@
         }
     }
     /*-----------------------------------------------------*/
-    
-    #conteiner {
+    /*#conteiner {
         width: 80%;
         height: 100%;
         display: grid;
         grid-template-columns: 20rem auto auto;
         grid-template-rows: auto repeat(2, 2fr);
+    }*/
+    
+    #conteiner-admin {
+        display: flex;
+        flex-wrap: wrap;
     }
     
+    .content-item:nth-child(1),
+    .home-item {
+        display: block;
+        width: 7vh;
+        height: 7vh;
+        background-image: url(../img/menu-home.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: left;
+        background-color: transparent;
+    }
+    
+    .menu_admin {
+        position: relative;
+        left: 3vh;
+        padding: 1vh;
+        background-color: rgb(30, 169, 211);
+    }
+    
+    .content-item>.menu_admin {
+        visibility: hidden;
+    }
+    
+    .content-item:hover .menu_admin {
+        visibility: visible;
+    }
+    
+    .Option-menu>.menu_admin {
+        color: rebeccapurple;
+    }
+    
+    .Option-menu>div {
+        padding: 1vh;
+        border-bottom: 2px dotted gray !important;
+    }
+    
+    .Option-menu div a {
+        font-size: 10px;
+        cursor: pointer;
+    }
+    
+    #response {
+        position: relative;
+        margin: 0px auto;
+        padding: auto;
+    }
+    /*
     #conteiner .grid-item:nth-child(1),
     #conteiner .grid-item:nth-child(2),
     #conteiner .grid-item:nth-child(3) {
         background-color: var(--color);
         filter: drop-shadow(3px 3px 3px blue);
     }
-    /*  #conteiner .grid-item:nth-child(1),
-    #conteiner .grid-item:nth-child(2),
-    #conteiner .grid-item:nth-child(3)>div {
-        margin: 10px;
-    }
-    */
     
-    #conteiner .grid-item:nth-child(2) {
+    .content-item:nth-child(1) {
+        margin: 10px;
+        background-color: crimson;
+        overflow-x: auto;
+    }
+    
+    .grid-item:nth-child(2) {
         position: relative;
         height: 100%;
         width: 100%;
@@ -218,4 +269,5 @@
         width: 20px;
         height: 20px;
         top: 90px
-    }
+    }*/
+    /*

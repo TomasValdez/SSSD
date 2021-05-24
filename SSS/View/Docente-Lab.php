@@ -1,9 +1,21 @@
+<?php 
+session_start();
+
+if (!isset($_SESSION['mailt'])){
+?><script>
+window.history.back();
+</script>
+<?php
+}
+?>
+
 <!DOCTYPE html>
 
 <html>
     
 <link rel="stylesheet" href="../Source/css/index.css">
 
+<link rel="stylesheet" href="../Source/css/circleLoadMail1.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" 
@@ -13,7 +25,7 @@ integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolfl
     <title></title>
 </head>
 <body>
-    <script src="../Controller/jquey.js"></script>
+    <script src="../Controller/js/jquey.js"></script>
 <?php include "../include/banner_tenc.php";
 //include "../include/loadMail.php";
 ?>
@@ -27,7 +39,6 @@ integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolfl
 </header>
 
 <div >BIENVENIDO <?PHP 
-    session_start();
     echo $_SESSION['nombre']; ?></div>
 <table id="table" class="table table-striped">
     <tbody>
@@ -79,101 +90,6 @@ foreach ($resul as $key=> $fila){
 
 
 </body>
-<script >
-    var mailsend = document.querySelectorAll(".mail");
-    const idmail= document.getElementById("idmail-no");
-    const logout= document.getElementById("logout");
-
-/*Click para cerrar session */
-logout.addEventListener("click",function(e){
-    e.preventDefault();
-    
-    $.ajax({
-        url: "../Model/loginout.php",
-        type: "POST",
-        async:true,
-        timeout:1*60*60*100,
-        success: (function (result){
-       
-          window.history.back(-1);
-        
-        })
-    });
-
-});
- 
-
-function deletehab(e){
-
-    const fila = e.target.parentNode.parentNode;
-    mail = fila.children[1].innerHTML;
-    
-    console.log(mail);
-           
-    $.ajax({
-        url: "../Controller/controllerMail.php",
-        type: "POST",
-        data: {mail: mail},
-        async:true,
-        timeout:1*60*60*100,
-        success: (function (result){
-       let va=JSON.stringify(result);
-      
-        if (va.includes("true")){
-
-            console.log("se envio exitosamente");
-        }
-        }),
-        error :
-         function( jqXHR, textStatus, errorThrown ) {
-            
-            if (jqXHR.status === 0) {
-
-                
-                alert('Not connect: Verify Network.');
-                
-            } else if (jqXHR.status == 404) {
-
-                alert('Requested page not found [404]');
-                
-            } else if (jqXHR.status == 500) {
-                
-                alert('Internal Server Error [500].');
-                
-            } else if (textStatus === 'parsererror') {
-                
-                alert('Requested JSON parse failed.');
-                
-            } else if (textStatus === 'timeout') {
-                
-                alert('Time out error.');
-
-            } else if (textStatus === 'abort') {
-                
-                alert('Ajax request aborted.');
-                
-            } else {
-                
-                alert('Uncaught Error: ' + jqXHR.responseText);
-                
-            }
-            
-        }
-        
-    });
-    
-}
-
-for (var i = 0; i < mailsend.length; i++) {
-    mailsend[i].addEventListener('click', function(e){
-    e.preventDefault();
-    deletehab(e);
-
-} );
-}
-
-
- 
- </script>
+<script src="../Controller/js/docente-lab.js"></script>
 </div>
 </html>

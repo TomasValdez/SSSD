@@ -1,6 +1,8 @@
+
 <?php require "../include/login-banner.php";?>
 
-<script>
+<script >
+
     const clickSend = document.getElementById("submi");
                     const divLoad =   document.getElementById("circle-load");
 clickSend.addEventListener('click', function(e) {
@@ -18,7 +20,7 @@ clickSend.addEventListener('click', function(e) {
         success: function(result) {
             
             var json = JSON.parse(result);
-
+                console.log();
             if (json.success == true) {
                // alert( "Correo localizado");
                 window.location.assign("../View/Docente-Lab.php");

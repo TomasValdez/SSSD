@@ -28,12 +28,10 @@
        
            //Recipients
            $mail->setFrom('carlos.floresmontes11@gmail.com',"tecnico/Cenidet");
-           $mail->addAddress($mailuser, 'Tecnico/CENIDET'); //persona dde quien la solicito
+           $mail->addAddress($mailuser); //persona dde quien la solicito
          //  $mail->addAddress("carlos.floresmontes11@gmail.com", 'Tecnico/CENIDET');      // Add a recipient
-          
          
-           // Content
-         //  $mail->isHTML(true);                                  // Set email format to HTML
+         // Set email format to HTML
            $mail->Subject = 'Liberacion de Servicio/CENIDET';
        
              
@@ -41,7 +39,7 @@
          $mail->Body    =   "SE LE COMOMUNICA, QUE EL TECNICO ".$tec." SE LE DECEA SER LIBERADO POR COMPLIR SU SOLCITUD";
     
          
-         if ($mail->send(false)==TRUE){
+         if ($mail->send()==TRUE){
            return true;
           }
       else{    

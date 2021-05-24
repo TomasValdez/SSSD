@@ -1,10 +1,9 @@
 <div  class="grid-item">
             <div id="div-form">
-                <form method="post" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>">
                     <div clas="text-label">Nombre </div>
                     <input type="hidden" name="opc2" >
                     <div class="form-input">
-                            <select name="idtecnico" id="idtecnico-List"onchange="this.form.submit()">
+                            <select name="idtecnico" id="idtecnico-List" >
                                 <option  disabled selected> ELIGA TECNICO</option>
                                 <?php 
                                 try {
@@ -43,7 +42,9 @@
                             ?>
                             
                             </select><div id="statusT"><div id="status-Aling"><?php 
-                                                                    
+                                          
+                                          
+                                          
                                         if (isset($valor)){ /*Vereficaremos que un array este libre para traer datos de La DB para */
                                                 if (isset($status)){          /* HABILIDAR O DESABILITAR TECNICO */
                                                         switch($status){
@@ -67,6 +68,8 @@
                                             echo "<div><label >Desactivado</label><div  class=\"RadioButton\"></div></div></div>";
                                         }
                                         ?>
+
+
                     </div>
                     </div>
                  </form>

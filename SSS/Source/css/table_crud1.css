@@ -1,0 +1,181 @@
+.content-admin {
+    display: flex;
+    position: relative;
+    margin: 0px auto;
+    padding: auto;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    flex-wrap: wrap;
+    flex-shrink: 3;
+    align-items: flex-start;
+}
+
+#error {
+    empty-cells: hide;
+    text-align: center;
+}
+
+table {
+    width: 80vw;
+    border-collapse: collapse;
+    margin: 6vh;
+    overflow-y: hidden;
+}
+
+thead {
+    color: rgb(255, 255, 255);
+}
+
+thead tr {
+    background-color: rgb(54, 86, 173);
+}
+
+td {
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+}
+
+table thead td:nth-child(even) {
+    background-color: rgb(212, 218, 217);
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: rgba(44, 81, 184, 0.5);
+}
+
+table tbody tr td:last-child a {
+    margin-right: 10px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+table tbody tr td:last-child a:hover {
+    text-decoration: double;
+    color: brown;
+}
+
+table tfoot tr {
+    align-content: center;
+    text-align: center;
+    background-color: yellow;
+}
+
+select {
+    width: 100%;
+}
+
+select,
+option {
+    width: 100%;
+    background-color: transparent;
+    border-width: 2px;
+    border-radius: 3px;
+    color: rgb(20, 34, 158);
+}
+
+select option:hover {
+    background-color: tomato;
+}
+
+
+/*mensaje add*/
+
+.emerger-add {
+    visibility: hidden;
+    position: absolute;
+}
+
+.btn-exit:hover {
+    cursor: default;
+}
+
+.btn-exit {
+    color: white;
+    text-align: right;
+    padding-right: 2vh;
+}
+
+.add {
+    background-color: transparent;
+    color: crimson;
+    border-width: 0px;
+}
+
+.emerger-add-v {
+    position: absolute;
+    visibility: visible;
+    border: 1px thin tomato;
+    background-color: rgb(255, 255, 255);
+    color: blanchedalmond;
+    border: 2px solid black;
+}
+
+.check-prob a:hover {
+    background-color: yellow;
+}
+
+.content-inform {
+    font-size: 1.4rem;
+    border: 2px solid rgba(92, 15, 0, 0.74);
+}
+
+input[type="radio"] {
+    font-size: 1rem;
+}
+
+
+/*
+@media screen and (max-width: 600px) {
+    thead {
+        display: none;
+    }
+    tbody td::before {
+        content: attr(data-label);
+        text-align: left;
+        position: relative;
+        left: 0px;
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    table,
+    tbody,
+    tr,
+    td {
+        display: block;
+        text-align: right;
+    }
+}
+
+@media screen and (min-width: 1125px) {
+    .content-admin {
+        width: 700px;
+    }
+}*/
+
+@media screen and (max-width: 800px) {
+    table {
+        width: 100%;
+    }
+    thead {
+        display: none;
+    }
+    tr:nth-of-type(2n) {
+        background-color: inherit;
+    }
+    tr td:first-child {
+        background: #f0f0f0;
+        font-weight: bold;
+        font-size: 1.3em;
+    }
+    tbody td {
+        display: block;
+        text-align: center;
+    }
+    tbody td:before {
+        content: attr(data-th);
+        display: block;
+        text-align: center;
+    }
+}

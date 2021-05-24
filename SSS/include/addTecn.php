@@ -1,6 +1,9 @@
+
+
+
+
 <div class="grid-item">
  <div id="div-form">
-     <form method="post" action="<? echo $_SERVER['PHP_SELF'];?>">
         <div clas="text-label">Nombre </div><div class="form-input"><input type="text" name="nombre"></div>
         <div clas="text-label">Apellido P </div><div class="form-input"><input type="text" name="apellido1"></div>
         <div clas="text-label">Apellido M </div><div class="form-input"><input type="text" name="apellido2"></div>
@@ -8,16 +11,15 @@
 
 
         <?php
+/*        include "../Model/conecct.php";
 
-        $resquest=$sql->query("SELECT * FROM tecnico");  /* CONSULTA GENERAL DE LOS TECNICO */
-    
-        if (isset($_POST["nombre"],$_POST["apellido1"],$_POST["apellido2"],$_POST["correo"])){
- 
-    if (!empty($_POST["nombre"]) && !empty($_POST["apellido1"]) && !empty($_POST["apellido2"]) && 
-    !empty($_POST["correo"]) ){
+        $con=new Connection_db();
+        $sql=$con->conexion();
+        $resquest=$sql->query("SELECT * FROM tecnico");  
   
         try{
-        $datos=array(trim($_POST["nombre"]),trim($_POST["apellido1"]),trim($_POST["apellido2"]),trim($_POST["correo"]),1);
+        $datos=array("nombre","apellido1",
+        "apellido2","correo");
         $resquestadd=$sql->query("INSERT INTO tecnico(Nombre,ApellidoP,ApellidoM,Correo) values 
         (
         '$datos[0]',
@@ -29,24 +31,18 @@
         catch(PDOException $e){        
         echo "<div class=\"toast_add\">".  $sql->error ." </div>";
     
-        }   
-    
-        unset($_POST["nombre"]);
-        unset($_POST["apellido1"]);
-        unset($_POST["apellido2"]);
-        unset($_POST["correo"]);
-        unset($datos);
-           
-    }
-  }
+        }
+    */
+  
 
 ?>
-        <div id="div-submit"><input type="submit" value="Añadir"></div>
-     </form>
+        <div id="div-submi"><input type="button" id="button-add" value="Añadir"></div>
 
  
     </div>
 </div>
+
+<script src="../Controller/js/addTecn.js"></script>
 
 
 

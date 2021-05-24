@@ -44,158 +44,122 @@
 
     header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
     header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
+ 
+    $lis=$connect->showTecnico();
 
-    if (!isset($_POST['id'])){
-  //   header"(location:LoginAdmin.php)";
-  
-    }
-
-    if (isset($_POST["enable"])){ /* actulizar el estado del tecnico */
-        $Updatestatus=$sql->query("UPDATE tecnico SET status=1 where idtecnico={$_POST["enable"]} "); 
-            
-        }else
-        if (isset($_POST["disable"])){
-        $Updatestatus=$sql->query("UPDATE tecnico SET status=0 where idtecnico={$_POST["disable"]} ");  
-    }
-
-
-
-    if (isset($_POST["idtecnico"],$_POST["nameArea"],$_POST["nameProblem"],$_POST["priority"])){
-        try{
-            $resqueste=$sql->query("INSERT INTO habilidad VALUES({$_POST["idtecnico"]} ,\"{$_POST["nameArea"]}\" , \"{$_POST["nameProblem"]}\",{$_POST["priority"]})"); 
-        unset($_POST["nameArea"],$_POST["nameProblem"],$_POST["priority"]);
-    
-      }
-      catch(PDOException $e) {
-        echo "No insertado".$e->getMessage();
-     
-      }
-
-    }
-    
 ?>
 
 <html >
 
 <head>
 <meta http-equiv="Pragma" content="no-cache">
-<link rel="stylesheet" href="../Source/css/crud.css">
+<link rel="stylesheet" href="../Source/css/normalize.css">
+<link rel="stylesheet" href="../Source/css/table_crud1.css">
 <link rel="stylesheet" href="../Source/css/index.css">
+
 <title></title></head>
 <body>
-<?php include "../include/banner_tenc.php";?>
-<script src="../Controller/jquey.js"></script>
-<div id="conteiner">
-    <div class="grid-item">
-        <form method="POST" action="addkill.php">
-        tecnico<input type="submit" name="opc1" >
-        habilidad<input type="submit" name="opc2">
-        </form>
+<?php 
+include "../include/banner_tenc.php";
+?>
+<div class="content-admin">
+
+<div class="content-inform">
+    <div>
+        <div class="list-tecn">
+        <select id="tecn"><?php 
+   echo '<option disabled selected >Selecionar tecnico</option>';
+   foreach($lis as $key=>$item){
+    echo '<option value="'.$item['idTecnico'].'">'.$item['nombre'].'</option>';;
+   }
+   ?></select>
+        </div>
+        <div class="status">
+        <div>Habilidatado<input type="radio" id="status" name="s"></div>
+        <div>Desabilitado<input type="radio" id="status" name="s"></div>
+        
     </div>
 
-    <?php 
-     $opc=2;
-        if (isset($_POST['opc1']) ){
-            include "../include/addTecn.php";
-        } else if (isset($_POST['opc2']) ){
-            include "../include/listTecn.php";
-            
-        }
-        else {
-            include "../include/listTecn.php";
-        }
-
-    ?>
-        
-    <div class="grid-item">
-        <div id="selec-item">
-            
-        <?php 
-            if (isset($_POST['idtecnico']) && isset($status)!=0 ){ //* MOSTRAREMOS LA LISTA  DE LOS TECNICO */
-          
-          ?>
-          <form method="post" action="<?php echo "addkill.php"; ?>"><?PHP
-                                    /*Mostrar las area */
-                 echo "<input type=\"hidden\" name=\"idtecnico\" value=\"{$_POST['idtecnico']}\" class=\"hidden\">";
-                 
-                
-                echo "<select name=\"nameArea\">
-                <option selected disabled >ELEGIR AREA</option>";
-                foreach ($areas as $area){
-                echo "<option value= \"".mb_strtoupper($area,'UTF-8')."\">".mb_strtoupper($area,'UTF-8')."</option>";
-                }
-                                 /*LISTA DE PROBLEMAS*/
-                echo "</select >
-                <select name=\"nameProblem\">               
-                <option selected disabled >ELEGIR HABILIDAD</option>";
-                foreach ($tipoProblema as $problemas  ){
-                    echo "<option value=\"{$problemas}\">".$problemas."</option>";
-                    }
-                    echo "</select>";                      
-                    
-                echo "<select name=\"priority\"> 
-                <option selected disabled >PRIORIDAD</option>";  /*NUMERO DE PRIORIDAD */
-                for ($x=5;$x>0;$x--){
-                echo "<option value=\"{$x}\">{$x}</option>";
-                }
-
-                echo "</select> 
-                <input type=\"submit\" value=\"Añadir\"></input>";
-            ?></form><?php
-             }else   {
-            ?>
-                <select> <option select disabled >Vacio</option></select>
-                <select><option select disabled >Vacio</option></select>
-                <select><option select disabled >Vacio</option></select>
-            <?php 
-            }
-            ?>
-
+        <div>
+            <a> Descargar Archivo SVC</a>
         </div>
     </div>
-  
-    <div class="grid-item">
-        <table id="table">
-            <tr>
-                
-            <th>DEPARTAMENTO</th>
-            <th>HABILIDAD</th>
-            <th>PRIORIDAD</th>
-            
-            <th></th>
-            </tr>
-            <tbody>
-            <?php
-           // header('Location:' . getenv('HTTP_REFERER'));
-             try{               
-            if(isset($_POST['idtecnico']) ){  
-               
-            $resquestTecn=$sql->prepare("SELECT hab.* FROM tecnico tec right JOIN 
-            habilidad hab  on tec.idtecnico=hab.idtecnico where
-            hab.idtecnico='".$_POST['idtecnico']."'");
-                $resquestTecn->execute();
-                    /*Mostrar datos del tecnico */
-                   // while ($datostec = mysqli_fetch_array($resquestTecn)){
-                       $resultado = $resquestTecn->fetchAll();
-                foreach($resultado as  $ke=>$datostec){ 
-                    echo "<tr><td>{$datostec[1]}</td>
-                                <td>{$datostec[2]}</td>
-                                <td>{$datostec[3]}</td>
-                                <td><a id=\"Buttondelete\" class=\"mailb\">Eliminar</a></td>
-                                </tr>";
-                        }     
-                    }       }catch(PDOException $e)
-                {
-                        echo "Error ".$e->getMessage;
-                }
 
-         $connect=null;
-            ?>
-            </tbody>
-        </table>
-    </div>
-<script src="../Controller/crud.js"></script>
 </div>
 
+
+<div id="emerger-add" class="emerger-add">
+        <div id="contenedor-emerger" class="contenedor-emerger">
+            <div id="btn-exit" class="btn-exit">X</div>
+                <div>Solución de problemas </div>
+                <div>
+                         <select id="iddep" >
+                            <?php 
+                            
+                            
+                            foreach ($tipoProblema as $item){
+                            //   echo '<input type="checkbox" class="check-prob" value="'.$item.'">'.$item;
+                             //  echo '<div  class="check-prob" ><a>'.$item."</a></div>";
+                             echo "<option>{$item}</option>";
+                            }
+                            
+                            ?>
+                            </select></div>
+                            <div>DEPARTAMENTO</div>
+                           <div>
+                                <select id="" >
+                                <?php foreach ($areas as $item){
+                                echo "<option>{$item}</option>";
+                                }?>
+                            </select>
+                            <div>
+                    </div>
+                    
+        </div>
+                    </div>          <button id="btn-add"class="add">Añadir</button>
+                   
+            
+        </div>
+</div>
+
+<!--
+<div id="conteiner-admin">
+    <div class="content-item">
+            <div class="home-item"></div>
+            <div class="menu_admin">
+             <div class="Option-menu"> 
+                 <div><a id="pague-tec">TECNICO</a></div>
+                 <div><a id="pague-hab">HABILIDAD</a></div>
+            </div>    
+            </div>
+    </div>
+-->
+
+
+    <div>
+<table class="table">
+<thead>  
+  <!-- <tr>  
+
+<td><button class="open-message-add">Agregar Nuevo</button></td></tr>-->
+<tr>
+            <th >DEPARTAMENTO</th>
+            <th>HABILIDAD</th>
+            <th>PRIORIDAD</th>
+            <th><a  class="open-message-add">arir</a></th>
+         
+        </tr>
+</thead>
+
+<tbody id="bodt">
+
+    </tbody>
+   
+
+</table>
+</div>
+</div>
+<script src="../Controller/js/jquey.js"></script>
+<script src="../Controller/js/crud.js"></script>
 </body>
 </html>

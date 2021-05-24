@@ -84,7 +84,7 @@ function ListaBitacora(){
   $smtp=$conexion->prepare('SELECT idRegistro,CorreoSolic, 
    IFNULL (concat(Nombre," ",ApellidoP," ",ApellidoM),"ESPERA DE ASIGNACION") as nombre
    ,TipoS,FechaR,statusS  FROM  registro re left JOIN tecnico te
-  ON (re.idTecnico=te.idTecnico)  where Activacion=1')  ;
+  ON (re.idTecnico=te.idTecnico)  where Activacion=1  and statusS not in("Liberado")')  ;
 
   $smtp->execute();
   $result=$smtp->fetchall(PDO::FETCH_ASSOC);
@@ -119,6 +119,7 @@ function registration_request($typeS,$mail):bool{
 
     }
 function deleteHabilidad($depar,$habilidad,$priority,$strUser){
+
       $con=$this->conexion();
         
       $consult="delete from habilidad where idTecnico={$strUser} and Departamento='{$depar}' and 
@@ -133,4 +134,85 @@ function deleteHabilidad($depar,$habilidad,$priority,$strUser){
       return false;
     }
   
+  
+
+
+
+function backuRegistro(){
+
+    $con=$this->conexion();
+    $consult="select *  from registro";
+    $smtp= $con->prepare($consult);
+    $smtp->execute();
+    $r=$smtp->fetchall(PDO::FETCH_ASSOC);
+  
+    $smtp=null;
+    $con=null;
+     return $r;
+}
+
+  
+function  showTecnico(){
+    $con=$this->conexion();
+    $consult="SELECT idTecnico, concat (Nombre ,'' ,ApellidoP,' ',ApellidoM) as nombre ,'status'  from tecnico";
+    $smtp= $con->prepare($consult);
+    $smtp->execute();
+    $r=$smtp->fetchall();
+
+    $con=null;
+  return $r;
+}
+
+function  addtec(){
+
+
+    $con=$this->conexion();
+    $consult="select *  from registro";
+    $smtp= $con->prepare($consult);
+    $smtp->execute();
+    $r=$smtp->fetchall(PDO::FETCH_ASSOC);
+  
+    $smtp=null;
+    $con=null;
   }
+
+ function showHabilTen($idT){
+    $con=$this->conexion();
+    $consult="SELECT *  from habilidad where idTecnico={$idT}";
+    $smtp= $con->prepare($consult);
+    $smtp->execute();
+    $r=$smtp->fetchall(PDO::FETCH_ASSOC);
+  
+    $smtp=null;
+    $con=null;
+
+    return $r;
+  }
+function DeleteKill($idT,$departamento,$habilidad,$prioridad){
+    $con=$this->conexion();
+    $consult="DELETE from habilidad where idTecnico={$idT} and Departamento='{$departamento}' and habilidad='{$habilidad}' and prioridad={$prioridad}";
+    $smtp= $con->prepare($consult);
+   if ( $smtp->execute()){
+     return true;
+   }
+   return false;
+  }
+
+
+
+  function liberacion($correo,$calif,$Comentario){
+    $con=$this->conexion();
+    $consult="CALL Liberacion(?,?,?)";
+    $smtp= $con->prepare($consult);
+
+    $smtp->bindParam(1,$correo);
+    $smtp->bindParam(2,$calif);
+    $smtp->bindParam(3,$Comentario);
+    
+    $smtp->execute();
+    $result=$smtp->fetchall(PDO::FETCH_ASSOC);
+
+
+return $result;
+  }
+}

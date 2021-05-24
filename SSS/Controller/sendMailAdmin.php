@@ -2,8 +2,6 @@
 
     <?php
     
-    include '../Model/conecct.php';
-    //require 'Ticked.php';
     require '../Source/PHPMailer/Exception.php';
     require '../Source/PHPMailer/PHPMailer.php';
     require '../Source/PHPMailer/SMTP.php';
@@ -14,19 +12,9 @@
     
     // Instantiation and passing `true` enables exceptions
 
-    session_start();
-    $mailUser=$_SESSION['mail'];
-    $type_Ser=$_POST['solicitud'];
-    $otro=$_POST['otro'];
-
-    if(isset($mailUser)){
+    function mailAdmin($Tecn,$mails){
+    $mail = new PHPMailer(true);
     
-    
-      $mail = new PHPMailer(true);
-      $conection=new Connection_db();
-    //  $pdf=new PDF();
-      
-      if ($conection->registration_request($type_Ser,$mailUser)==TRUE){
     
       try {
           //Server settings
@@ -41,43 +29,21 @@
           $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
       
           //Recipients
-          $mail->setFrom('carlos.floresmontes11@gmail.com');
-          $mail->addAddress($mailUser);     // Add a recipient   AGREGAR OTRA PERSONA PARA EN REMVIO AL ADMIN
+          $mail->setFrom('carlos.floresmontes11@gmail.com',"Sistema De Solcitud/Asignacion");
+          $mail->addAddress("carlos.floresmontes11@gmail.com");     // Add a recipient   AGREGAR OTRA PERSONA PARA EN REMVIO AL ADMIN
          
         
-          // Content
-        //  $mail->isHTML(true);                                  // Set email format to HTML
-          $mail->Subject = 'Vereficiacion de Servicio';
+          $mail->Subject = 'Vereficiacion/agragacion de Servicio';
           
-          if(isset($_POST["otro"])){          
-            $mail->Body    = "\n\n Explicacion Detallada \n".$_POST["otro"];
-            
-          }
-          
-                    $mail->Body    =   " Usted. Esta solicitando  el servicio en ".$type_Ser.
-                    " http://localhost:8066/Cenidet/View/Verificacion.php?mail={$mailUser} \n
-                    http://localhost:8066/Cenidet/View/Liberacion.php?mail={$mailUser}" ;
-               
-
-
        
-             // $mail->AddStringAttachment($pdf->Output("","S"), 'doc.pdf');
-
+          
+                    $mail->Body    = " EL SR(A) {$Tecn} es quien atendera sulicitud del Correo {$mails}" ;
+              
          if ( $mail->send()==TRUE){
-           session_reset();
-           session_destroy();
-          echo json_encode(array("success"=>true));
-
+        return true;
              }
       } catch (Exception $e) {
          
       }
-
-      echo json_encode(array("success"=>false));
+      return true;
     }
-    
-  }
-    ?>
-
-</body>
-</html>

@@ -5,10 +5,7 @@
                 <img src="../Source/img/Logo_CENIDET (1).png" class="img-logo"></a>
         
         </div>
-       
-        
-       
-        <div class="logo-item">
+       <div class="logo-item">
                 <img src="../Source/img/tecnm.png" class="img-logo2">
         </div>
        
