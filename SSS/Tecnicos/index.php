@@ -24,8 +24,6 @@ switch($accion){
 
         $tmpFoto=$_FILES["txtFoto"]["tmp_name"];
 
-
-
         if($tmpFoto!=""){
             move_uploaded_file($tmpFoto,"../Source/img/".$nombreArchivo);
         }
@@ -42,16 +40,33 @@ switch($accion){
 
         $sentencia=$pdo->prepare("UPDATE tecnicos 
         SET nombreTecnico=:nombreTecnico,
-        correoTecnico=:correoTecnico,
-        fotoTecnico=:fotoTecnico
-        WHERE idTecnico=:idTecnico");
+        correoTecnico=:correoTecnico
+         WHERE idTecnico=:idTecnico");
         
        
         $sentencia->bindParam(':nombreTecnico',$txtNombre);
         $sentencia->bindParam(':correoTecnico',$txtCorreo);
-        $sentencia->bindParam(':fotoTecnico',$txtFoto);
+        
         $sentencia->bindParam(':idTecnico',$txtID);
         $sentencia->execute();
+
+
+        $Fecha= new DateTime();
+        $nombreArchivo=($txtFoto!="")?$Fecha->getTimestamp()."_".$_FILES["txtFoto"]["name"]:"imagen.jpg";
+
+        $tmpFoto=$_FILES["txtFoto"]["tmp_name"];
+
+        if($tmpFoto!=""){
+            move_uploaded_file($tmpFoto,"../Source/img/".$nombreArchivo);
+        
+            $sentencia=$pdo->prepare("UPDATE tecnicos 
+            SET fotoTecnico=:fotoTecnico
+             WHERE idTecnico=:idTecnico");
+             $sentencia->bindParam(':fotoTecnico',$nombreArchivo);
+             $sentencia->bindParam(':idTecnico',$txtID);
+             $sentencia->execute();
+        }
+
 
         header('Location: index.php');
 
@@ -61,11 +76,19 @@ switch($accion){
 
             case"btnEliminar":
 
-             $sentencia=$pdo->prepare("DELETE FROM tecnicos
+            $sentencia=$pdo->prepare("SELECT fotoTecnico FROM tecnicos
+            WHERE idTecnico=:idTecnico"); 
+            $sentencia->bindParam(':idTecnico',$txtID);
+            $sentencia->execute();
+            $tecnicos=$sentencia->fetch(PDO::FETCH_LAZY);
+
+            /*
+            $sentencia=$pdo->prepare("DELETE FROM tecnicos
             WHERE idTecnico=:idTecnico"); 
             $sentencia->bindParam(':idTecnico',$txtID);
             $sentencia->execute();
             header('Location: index.php');
+            */
 
                 echo"presionaste btn Eliminar";
                 break;
