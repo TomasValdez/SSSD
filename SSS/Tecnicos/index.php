@@ -1,12 +1,14 @@
 <?php
 
 
-$txtID=(isset($_POST['txtID'])?$_POST['txtID']:"");
-$txtNombre=(isset($_POST['txtNombre'])?$_POST['txtNombre']:"");
-$txtCorreo=(isset($_POST['txtCorreo'])?$_POST['txtCorreo']:"");
-$txtFoto=(isset($_POST['txtFoto'])?$_POST['txtFoto']:"");
-
-$accion=(isset($_POST['accion'])?$_POST['accion']:"");
+$txtID=(isset($_POST['txtID']))?$_POST['txtID']:"";
+$txtNombre=(isset($_POST['txtNombre']))?$_POST['txtNombre']:"";
+$txtCorreo=(isset($_POST['txtCorreo']))?$_POST['txtCorreo']:"";
+$txtFoto=(isset($_FILES['txtFoto']["name"]))?$_FILES['txtFoto']["name"]:"";
+if($txtFoto==NULL){
+    $txtFoto="imagen.jpg";
+}
+$accion=(isset($_POST['accion']))?$_POST['accion']:"";
 
 include("../Conexion/Conexion.php");
 
@@ -18,6 +20,17 @@ switch($accion){
        
         $sentencia->bindParam(':nombreTecnico',$txtNombre);
         $sentencia->bindParam(':correoTecnico',$txtCorreo);
+
+        $Fecha= new DateTime();
+        $nombreArchivo=($txtFoto!="")?$Fecha->getTimestamp()."_".$_FILES["txtFoto"]["name"]:"imagen.jpg";
+
+        $tmpFoto=$_FILES["txtFoto"]["tmp_name"];
+
+        if($tmpFoto!=""){
+            move_uploaded_file($tmpFoto,"../Source/img/".$nombreArchivo);
+        }
+
+
         $sentencia->bindParam(':fotoTecnico',$txtFoto);
         $sentencia->execute();
 
@@ -48,19 +61,11 @@ switch($accion){
 
             case"btnEliminar":
 
-             $sentencia=$pdo->prepare("UPDATE tecnicos 
-            SET nombreTecnico=:nombreTecnico,
-            correoTecnico=:correoTecnico,
-            fotoTecnico=:fotoTecnico
-            WHERE idTecnico=:idTecnico");
-            
-        
-            $sentencia->bindParam(':nombreTecnico',$txtNombre);
-            $sentencia->bindParam(':correoTecnico',$txtCorreo);
-            $sentencia->bindParam(':fotoTecnico',$txtFoto);
+             $sentencia=$pdo->prepare("DELETE FROM tecnicos
+            WHERE idTecnico=:idTecnico"); 
             $sentencia->bindParam(':idTecnico',$txtID);
             $sentencia->execute();
-
+            header('Location: index.php');
 
                 echo"presionaste btn Eliminar";
                 break;
@@ -75,7 +80,7 @@ $sentencia=$pdo->prepare("SELECT * FROM `tecnicos` WHERE 1");
 $sentencia->execute();
 $listaTecnicos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 
-print_r($listaTecnicos);
+//print_r($listaTecnicos);
 
 ?>
 <!DOCTYPE html>
@@ -90,8 +95,11 @@ print_r($listaTecnicos);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
+   
     <div class="container">
-<form action="" method="post" ectype="multipart/form-data">
+
+    <!--Formulario-->
+<form action="" method="post" enctype="multipart/form-data">
 
 <label for="">ID</label>
 <input type="text" name="txtID" value="<?php echo $txtID;?>" placeholder="" id="txtID" require="">
@@ -106,18 +114,21 @@ print_r($listaTecnicos);
 <br>
 
 <label for="">Foto:</label>
-<input type="text" name="txtFoto" value="<?php echo $txtFoto;?>" placeholder="" id="txtFoto" require="">
+<input type="file" accept="image/*" name="txtFoto" value="<?php echo $txtFoto;?>" placeholder="" id="txtFoto" require="">
 <br>
 
+<!--Botones-->
 
 <button value="btnAgregar" type="submit" name="accion">Agregar</button>
 <button value="btnModificar" type="submit" name="accion">Modificar</button>
 <button value="btnEliminar" type="submit" name="accion">Eliminar</button>
 <button value="btnCancelar" type="submit" name="accion">Cancelar</button>
 </form>
+
+<!-- Tabla for each con los datos de la base de datos-->
 <div class="row">
 
-    <table>
+    <table class="table">
         
         <thead>
             <tr>
@@ -130,7 +141,7 @@ print_r($listaTecnicos);
     <?php foreach($listaTecnicos as $tecnicos){?>
 
         <tr>
-            <td><?php echo $tecnicos['fotoTecnico'];?></td>
+            <td><img class="img-thumbnail" width="100px" src="../Source/img/crud/ <?php  echo $tecnicos['fotoTecnico']; ?>" /></td>
             <td><?php echo $tecnicos['nombreTecnico'];?></td>
             <td><?php echo $tecnicos['correoTecnico'];?></td>
             <td>
@@ -143,7 +154,7 @@ print_r($listaTecnicos);
             <input type="hidden" name="txtFoto"value="<?php echo $tecnicos['fotoTecnico'];?>";>
 
             <input  type="submit" value="Seleccionar" name="accion">
-
+            <button value="btnEliminar" type="submit" name="accion">Eliminar</button>
             </form>
 
             
