@@ -5,9 +5,7 @@ $txtID=(isset($_POST['txtID']))?$_POST['txtID']:"";
 $txtNombre=(isset($_POST['txtNombre']))?$_POST['txtNombre']:"";
 $txtCorreo=(isset($_POST['txtCorreo']))?$_POST['txtCorreo']:"";
 $txtFoto=(isset($_FILES['txtFoto']["name"]))?$_FILES['txtFoto']["name"]:"";
-if($txtFoto==NULL){
-    $txtFoto="imagen.jpg";
-}
+
 $accion=(isset($_POST['accion']))?$_POST['accion']:"";
 
 include("../Conexion/Conexion.php");
@@ -26,12 +24,14 @@ switch($accion){
 
         $tmpFoto=$_FILES["txtFoto"]["tmp_name"];
 
+
+
         if($tmpFoto!=""){
             move_uploaded_file($tmpFoto,"../Source/img/".$nombreArchivo);
         }
 
 
-        $sentencia->bindParam(':fotoTecnico',$txtFoto);
+        $sentencia->bindParam(':fotoTecnico',$nombreArchivo);
         $sentencia->execute();
 
         echo $txtID;
@@ -141,7 +141,7 @@ $listaTecnicos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
     <?php foreach($listaTecnicos as $tecnicos){?>
 
         <tr>
-            <td><img class="img-thumbnail" width="100px" src="../Source/img/crud/ <?php  echo $tecnicos['fotoTecnico']; ?>" /></td>
+            <td><img class="img-thumbnail" width="100px" src="../Source/img/ <?php  echo $tecnicos['fotoTecnico']; ?>" /></td>
             <td><?php echo $tecnicos['nombreTecnico'];?></td>
             <td><?php echo $tecnicos['correoTecnico'];?></td>
             <td>
