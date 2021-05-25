@@ -59,8 +59,23 @@ switch($accion){
         if($tmpFoto!=""){
             move_uploaded_file($tmpFoto,"../Source/img/".$nombreArchivo);
         
-            $sentencia=$pdo->prepare("UPDATE tecnicos 
-            SET fotoTecnico=:fotoTecnico
+
+            $sentencia=$pdo->prepare("SELECT fotoTecnico FROM tecnicos
+            WHERE idTecnico=:idTecnico"); 
+            $sentencia->bindParam(':idTecnico',$txtID);
+            $sentencia->execute();
+            $tecnicos=$sentencia->fetch(PDO::FETCH_LAZY);
+
+                print_r($tecnicos);
+
+                if(isset($tecnicos["fotoTecnico"])){
+                    if(file_exists("../Source/img/".$tecnicos["fotoTecnico"])){
+                        unlink("../Source/img/".$tecnicos["fotoTecnico"]);
+                    }
+                }
+
+
+            $sentencia=$pdo->prepare("UPDATE tecnicos SET fotoTecnico=:fotoTecnico
              WHERE idTecnico=:idTecnico");
              $sentencia->bindParam(':fotoTecnico',$nombreArchivo);
              $sentencia->bindParam(':idTecnico',$txtID);
@@ -82,6 +97,13 @@ switch($accion){
             $sentencia->execute();
             $tecnicos=$sentencia->fetch(PDO::FETCH_LAZY);
 
+                print_r($tecnicos);
+
+                if(isset($tecnicos["fotoTecnico"])){
+                    if(file_exists("../Source/img/".$tecnicos["fotoTecnico"])){
+                        unlink("../Source/img/".$tecnicos["fotoTecnico"]);
+                    }
+                }
             /*
             $sentencia=$pdo->prepare("DELETE FROM tecnicos
             WHERE idTecnico=:idTecnico"); 
