@@ -146,21 +146,47 @@ $listaTecnicos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
     <!--Formulario-->
 <form action="" method="post" enctype="multipart/form-data">
 
-<label for="">ID</label>
-<input type="text" name="txtID" value="<?php echo $txtID;?>" placeholder="" id="txtID" require="">
-<br>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+        Launch demo modal
+        </button>
+
+        <!-- Modal para el usuario -->
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
+
+<input type="hidden"  name="txtID" required value="<?php echo $txtID;?>" placeholder="" id="txtID" require="">
+
 
 <label for="">Nombre(s):</label>
-<input type="text" name="txtNombre" value="<?php echo $txtNombre;?>"placeholder="" id="txtNombre" require="">
+<input type="text"  name="txtNombre" required value="<?php echo $txtNombre;?>"placeholder="" id="txtNombre" require="">
 <br>
 
 <label for="">Correo Electronico:</label>
-<input type="text" name="txtCorreo" value="<?php echo $txtCorreo;?>" placeholder="" id="txtCorreo" require="">
+<input type="email"  name="txtCorreo" required value="<?php echo $txtCorreo;?>" placeholder="" id="txtCorreo" require="">
 <br>
 
 <label for="">Foto:</label>
-<input type="file" accept="image/*" name="txtFoto" value="<?php echo $txtFoto;?>" placeholder="" id="txtFoto" require="">
-<br>
+<input type="file"  accept="image/*" name="txtFoto" required value="<?php echo $txtFoto;?>" placeholder="" id="txtFoto" require="">
+<br> 
 
 <!--Botones-->
 
