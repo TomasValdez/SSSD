@@ -3,7 +3,10 @@
 
 $txtID=(isset($_POST['txtID']))?$_POST['txtID']:"";
 $txtNombre=(isset($_POST['txtNombre']))?$_POST['txtNombre']:"";
+$txtApellidoP=(isset($_POST['txtApellidoP']))?$_POST['txtApellidoP']:"";
+$txtApellidoM=(isset($_POST['txtApellidoM']))?$_POST['txtApellidoM']:"";
 $txtCorreo=(isset($_POST['txtCorreo']))?$_POST['txtCorreo']:"";
+$txtDepartamento=(isset($_POST['txtDepartamento']))?$_POST['txtDepartamento']:"";
 $txtFoto=(isset($_FILES['txtFoto']["name"]))?$_FILES['txtFoto']["name"]:"";
 
 $accion=(isset($_POST['accion']))?$_POST['accion']:"";
@@ -18,10 +21,13 @@ include("../Conexion/Conexion.php");
 
 switch($accion){
     case"btnAgregar":
-        $sentencia=$pdo->prepare("INSERT INTO tecnicos(nombreTecnico,correoTecnico,fotoTecnico) VALUES(:nombreTecnico,:correoTecnico,:fotoTecnico)");
+        $sentencia=$pdo->prepare("INSERT INTO tecnicoss(nombreTecnico,apellidoP,apellidoM,correoTecnico,departamento,fotoTecnico) VALUES(:nombreTecnico,:apellidoP,:apellidoM,:correoTecnico,:departamento,:fotoTecnico)");
        
         $sentencia->bindParam(':nombreTecnico',$txtNombre);
+        $sentencia->bindParam(':apellidoP',$txtApellidoP);
+        $sentencia->bindParam(':apellidoM',$txtApellidoM);
         $sentencia->bindParam(':correoTecnico',$txtCorreo);
+        $sentencia->bindParam(':departamento',$txtDepartamento);
 
         $Fecha= new DateTime();
         $nombreArchivo=($txtFoto!="")?$Fecha->getTimestamp()."_".$_FILES["txtFoto"]["name"]:"imagen.jpg";
@@ -42,16 +48,19 @@ switch($accion){
 
         case"btnModificar":
 
-        $sentencia=$pdo->prepare("UPDATE tecnicos 
+        $sentencia=$pdo->prepare("UPDATE tecnicoss 
         SET nombreTecnico=:nombreTecnico,
-        correoTecnico=:correoTecnico
+        apellidoP=:apellidoP,apellidoM=:apellidoM,
+        correoTecnico=:correoTecnico,
+        departamento=:departamento
          WHERE idTecnico=:idTecnico");
         
        
         $sentencia->bindParam(':nombreTecnico',$txtNombre);
+        $sentencia->bindParam(':apellidoP',$txtApellidoP);
+        $sentencia->bindParam(':apellidoM',$txtApellidoM);
         $sentencia->bindParam(':correoTecnico',$txtCorreo);
-        
-        $sentencia->bindParam(':idTecnico',$txtID);
+        $sentencia->bindParam(':departamento',$txtDepartamento);
         $sentencia->execute();
 
 
@@ -64,22 +73,22 @@ switch($accion){
             move_uploaded_file($tmpFoto,"../Source/img/".$nombreArchivo);
         
 
-            $sentencia=$pdo->prepare("SELECT fotoTecnico FROM tecnicos
+            $sentencia=$pdo->prepare("SELECT fotoTecnico FROM tecnicoss
             WHERE idTecnico=:idTecnico"); 
             $sentencia->bindParam(':idTecnico',$txtID);
             $sentencia->execute();
-            $tecnicos=$sentencia->fetch(PDO::FETCH_LAZY);
+            $tecnicoss=$sentencia->fetch(PDO::FETCH_LAZY);
 
-                print_r($tecnicos);
+                print_r($tecnicoss);
 
-                if(isset($tecnicos["fotoTecnico"])){
-                    if(file_exists("../Source/img/".$tecnicos["fotoTecnico"])){
-                        unlink("../Source/img/".$tecnicos["fotoTecnico"]);
+                if(isset($tecnicoss["fotoTecnico"])){
+                    if(file_exists("../Source/img/".$tecnicoss["fotoTecnico"])){
+                        unlink("../Source/img/".$tecnicoss["fotoTecnico"]);
                     }
                 }
 
 
-            $sentencia=$pdo->prepare("UPDATE tecnicos SET fotoTecnico=:fotoTecnico
+            $sentencia=$pdo->prepare("UPDATE tecnicoss SET fotoTecnico=:fotoTecnico
              WHERE idTecnico=:idTecnico");
              $sentencia->bindParam(':fotoTecnico',$nombreArchivo);
              $sentencia->bindParam(':idTecnico',$txtID);
@@ -87,7 +96,7 @@ switch($accion){
         }
 
 
-        header('Location: index.php');
+        header('Location: indix.php');
 
             echo $txtID;
             echo"presionaste btn Modificar";
@@ -95,25 +104,25 @@ switch($accion){
 
             case"btnEliminar":
 
-            $sentencia=$pdo->prepare("SELECT fotoTecnico FROM tecnicos
+            $sentencia=$pdo->prepare("SELECT fotoTecnico FROM tecnicoss
             WHERE idTecnico=:idTecnico"); 
             $sentencia->bindParam(':idTecnico',$txtID);
             $sentencia->execute();
-            $tecnicos=$sentencia->fetch(PDO::FETCH_LAZY);
+            $tecnicoss=$sentencia->fetch(PDO::FETCH_LAZY);
 
-                print_r($tecnicos);
+                print_r($tecnicoss);
 
-                if(isset($tecnicos["fotoTecnico"])){
-                    if(file_exists("../Source/img/".$tecnicos["fotoTecnico"])){
-                        unlink("../Source/img/".$tecnicos["fotoTecnico"]);
+                if(isset($tecnicoss["fotoTecnico"])){
+                    if(file_exists("../Source/img/".$tecnicoss["fotoTecnico"])){
+                        unlink("../Source/img/".$tecnicoss["fotoTecnico"]);
                     }
                 }
             
-            $sentencia=$pdo->prepare("DELETE FROM tecnicos
+            $sentencia=$pdo->prepare("DELETE FROM tecnicoss
             WHERE idTecnico=:idTecnico"); 
             $sentencia->bindParam(':idTecnico',$txtID);
             $sentencia->execute();
-            header('Location: index.php');
+            header('Location: indix.php');
             
 
                 echo"presionaste btn Eliminar";
@@ -130,7 +139,7 @@ switch($accion){
                         break;
 }
 
-$sentencia=$pdo->prepare("SELECT * FROM `tecnicos` WHERE 1");
+$sentencia=$pdo->prepare("SELECT * FROM `tecnicoss` WHERE 1");
 $sentencia->execute();
 $listaTecnicos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 
@@ -174,28 +183,47 @@ $listaTecnicos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
       <div class="modal-body">
             <div class="form-row">
                 <input type="hidden"  name="txtID" required value="<?php echo $txtID;?>" placeholder="" id="txtID" require="">
-
-                    <div class="form-group col-md-12">
-                        <label for="">Nombre(s):</label>
-                        <input type="text" class="form-control"  name="txtNombre" required value="<?php echo $txtNombre;?>"placeholder="" id="txtNombre" require="">
-                        <br>
-                    </div>
                     
-                    <div class="form-group col-md-12">
-                        <label for="">Correo Electronico:</label>
-                        <input type="email" class="form-control"   name="txtCorreo" required value="<?php echo $txtCorreo;?>" placeholder="" id="txtCorreo" require="">
-                        <br>
-                    </div>
+                        <div class="form-group col-md-12">
+                            <label for="">Nombre(s):</label>
+                            <input type="text" class="form-control"  name="txtNombre" required value="<?php echo $txtNombre;?>"placeholder="" id="txtNombre" require="">
+                            <br>
+                        </div>
 
-                    <div class="form-group col-md-12">
-                        <label for="">Foto:</label>
-                        <input type="file"  class="form-control"  accept="image/*" name="txtFoto" required value="<?php echo $txtFoto;?>" placeholder="" id="txtFoto" require="">
-                        <br>
-                    </div>
+                            <div class="form-group col-md-12">
+                                <label for="">Apellido Paterno:</label>
+                                <input type="text" class="form-control"  name="txtApellidoP" required value="<?php echo $txtApellidoP;?>"placeholder="" id="txtApellidoP" require="">
+                                <br>
+                            </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="">Apellido Materno:</label>
+                                        <input type="text" class="form-control"  name="txtApellidoM" required value="<?php echo $txtApellidoM;?>"placeholder="" id="txtApellidoM" require="">
+                                        <br>
+                                    </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label for="">Correo Electronico:</label>
+                                            <input type="email" class="form-control"   name="txtCorreo" required value="<?php echo $txtCorreo;?>" placeholder="" id="txtCorreo" require="">
+                                            <br>
+                                        </div>
+
+                                            <div class="form-group col-md-12">
+                                                <label for="">Departamento:</label>
+                                                <input type="text" class="form-control"  name="txtDepartamento" required value="<?php echo $txtDepartamento;?>"placeholder="" id="txtDepartamento" require="">
+                                                <br>
+                                            </div>
+
+                                                <div class="form-group col-md-12">
+                                                    <label for="">Foto:</label>
+                                                    <input type="file"  class="form-control"  accept="image/*" name="txtFoto" required value="<?php echo $txtFoto;?>" placeholder="" id="txtFoto" require="">
+                                                    <br>
+                                                </div>
 
             </div>
      
       </div>
+
       <div class="modal-footer">
             <!--Botones-->
 
@@ -212,7 +240,7 @@ $listaTecnicos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Agregar Registro +
+  Agregar Tecnico
 </button>
 
 
@@ -229,25 +257,34 @@ $listaTecnicos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
         <thead>
             <tr>
                 <th>Foto</th>
-                <th>Nombre Completo</th>
+                <th>Nombre(s)</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
                 <th>Correo</th>
+                <th>Departamento</th>
                 <th>Acciones</th>
             </tr>
         </thead>
-    <?php foreach($listaTecnicos as $tecnicos){?>
+    <?php foreach($listaTecnicos as $tecnicoss){?>
 
         <tr>
-            <td><img class="img-thumbnail" width="100px" src="../Source/img/ <?php  echo $tecnicos['fotoTecnico']; ?>" /></td>
-            <td><?php echo $tecnicos['nombreTecnico'];?></td>
-            <td><?php echo $tecnicos['correoTecnico'];?></td>
+            <td><img class="img-thumbnail" width="100px" src="../Source/img/ <?php  echo $tecnicoss['fotoTecnico']; ?>" /></td>
+            <td><?php echo $tecnicoss['nombreTecnico'];?></td>
+            <td><?php echo $tecnicoss['apellidoP'];?></td>
+            <td><?php echo $tecnicoss['apellidoM'];?></td>
+            <td><?php echo $tecnicoss['correoTecnico'];?></td>
+            <td><?php echo $tecnicoss['departamento'];?></td>
             <td>
             
             <form action="" method="post">
 
-            <input type="hidden" name="txtID" value="<?php echo $tecnicos['idTecnico'];?>">
-            <input type="hidden" name="txtNombre"value="<?php echo $tecnicos['nombreTecnico'];?>">
-            <input type="hidden" name="txtCorreo"value="<?php echo $tecnicos['correoTecnico'];?>">
-            <input type="hidden" name="txtFoto"value="<?php echo $tecnicos['fotoTecnico'];?>";>
+            <input type="hidden" name="txtID" value="<?php echo $tecnicoss['idTecnico'];?>">
+            <input type="hidden" name="txtNombre"value="<?php echo $tecnicoss['nombreTecnico'];?>">
+            <input type="hidden" name="txtApellidoP"value="<?php echo $tecnicoss['apellidoP'];?>">
+            <input type="hidden" name="txtApellidoM"value="<?php echo $tecnicoss['apellidoM'];?>">
+            <input type="hidden" name="txtCorreo"value="<?php echo $tecnicoss['correoTecnico'];?>">
+            <input type="hidden" name="txtDepartamento"value="<?php echo $tecnicoss['departamento'];?>">
+            <input type="hidden" name="txtFoto"value="<?php echo $tecnicoss['fotoTecnico'];?>";>
 
             <input  type="submit" value="Seleccionar" name="accion">
             <button value="btnEliminar" type="submit" name="accion">Eliminar</button>
