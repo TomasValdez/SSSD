@@ -34,6 +34,7 @@
 
 </div>
 </body>
+<!--
 <footer><div class="footer">
     <li>REDES SOLCIALES</li>
 </div>
@@ -55,5 +56,5 @@
                   	<p>www.cenidet.edu.mx</p>
                 </div></div>   
 </footer>
-
+-->
 </html>

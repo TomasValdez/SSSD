@@ -14,7 +14,7 @@ $accion=(isset($_POST['accion']))?$_POST['accion']:"";
 $accionAgregar="";
 $accionModificar=$accionEliminar=$accionCancelar="disabled";
 $mostrarModal=false;
-
+ 
 include("../Conexion/Conexion.php");
 
 
@@ -134,8 +134,8 @@ switch($accion){
                     
                     case "Seleccionar":
                         echo"presionaste btn seleccionar";
-                        $accionAgregar="";
-                        $accionModificar=$accionEliminar=$accionCancelar="disabled";
+                        $accionAgregar="disabled";
+                        $accionModificar=$accionEliminar=$accionCancelar="";
                         break;
 }
 
@@ -242,6 +242,12 @@ $listaTecnicos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   Agregar Tecnico
 </button>
+<button type="button" class="btn btn-success">
+  Exportar datos
+</button>
+<a button type="button" class="btn btn-danger" href="../prueba/index.php">
+  Salir
+</button></a>
 
 
 
