@@ -61,6 +61,7 @@ switch($accion){
         $sentencia->bindParam(':apellidoM',$txtApellidoM);
         $sentencia->bindParam(':correoTecnico',$txtCorreo);
         $sentencia->bindParam(':departamento',$txtDepartamento);
+        $sentencia->bindParam(':idTecnico',$txtID);
         $sentencia->execute();
 
 
