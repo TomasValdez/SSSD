@@ -1,0 +1,161 @@
+.logo-head {
+    display: grid;
+    width: 100%;
+    /*width: 480px;
+    */grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
+    background-color: rgba(23, 10, 141, 0.9);
+    text-align: center;
+}
+
+.img-logo {
+    max-width: 270px;
+    max-height: 170px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.img-logo2 {
+    display: block;
+    position: relative;
+     width: 110px;
+    height: 110px;
+    top: 0px;
+}
+
+.logo-item:nth-child(3) {
+    display: flex;
+    text-align: center;
+    justify-items: center;
+    align-content: center;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+.content-reparation {
+    display: block;
+    -ms-flex-align: end;
+}
+
+.logo-reparacion {
+    position: relative;
+    margin-top: 10vmin;
+    
+}
+
+.img-servicio {
+    display: block;
+    position: relative;
+    max-width: 50%;
+    max-block-size: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/*MENU*/
+
+.line-menu {
+    display: block;
+    position: relative;
+    
+    top: 20px;
+}
+
+
+.menu-div {
+    display: inline-block;
+    width: 100%;
+    background-color: rgba(23, 10, 141, 0.9);
+    text-align: center;
+
+}
+
+.menu-div a {
+    display: inline-block;
+    width: 200px;
+    padding: 10px;
+    font-size: 1.2rem;
+    color: rgb(211, 214, 213);
+    text-decoration: none;
+    font-family: 'Anton', sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 2px;
+}
+
+.menu-div a:hover {
+    color: rgb(163, 238, 192);
+    background-image: url(../img/agula.png);
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 60px;
+}
+
+@media (max-width:768px){
+ 
+    .logo-head {
+        display: grid;
+        width: 100vh;
+    }
+  
+    .menu-div a{
+        border-bottom: 2px solid gray;
+        
+    }
+    .line-menu {
+        width: 100vh;
+    } 
+    
+.img-servicio {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+    height: 300px;
+    background-color: ivory;
+}
+.logo-item:nth-child(3){
+    font-size: 10px;
+
+}
+}
+
+
+.content-position{
+    position: relative;
+    max-width: 100%;
+    
+}
+.content-liberacion{
+    display: block;
+    width: 30vmax;
+    margin-top: 10px;
+    border: 1px solid black;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.image-status img{
+    width: 50%;
+    
+}
+#menssage-status{
+color: black;
+}
+
+.image-status{
+    width: 100%;
+}
+.div-text-status{
+       height: 40px;
+    background-color: rgba(135, 132, 138, 0.596);
+}
+.title-div
+.bitacora{
+text-align: center;
+
+}
