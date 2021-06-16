@@ -41,9 +41,8 @@ switch($accion){
 
         $sentencia->bindParam(':fotoTecnico',$nombreArchivo);
         $sentencia->execute();
-
-        echo $txtID;
-        echo"presionaste bnt agregar"; 
+        header('Location: indix.php');
+        
      break;
 
         case"btnModificar":
@@ -84,7 +83,9 @@ switch($accion){
 
                 if(isset($tecnicoss["fotoTecnico"])){
                     if(file_exists("../Source/img/".$tecnicoss["fotoTecnico"])){
+                        if($item['Foto']!="imagen.jpg"){
                         unlink("../Source/img/".$tecnicoss["fotoTecnico"]);
+                        }
                     }
                 }
 
@@ -113,7 +114,7 @@ switch($accion){
 
                 print_r($tecnicoss);
 
-                if(isset($tecnicoss["fotoTecnico"])){
+                if(isset($tecnicoss["fotoTecnico"])&&($item['fotoTecnico']!="imagen.jpg")){
                     if(file_exists("../Source/img/".$tecnicoss["fotoTecnico"])){
                         unlink("../Source/img/".$tecnicoss["fotoTecnico"]);
                     }
@@ -131,12 +132,31 @@ switch($accion){
 
                 case"btnCancelar":
                     echo"presionaste btn Cancelar";
+                    header('Location: indix.php');
                     break;
                     
                     case "Seleccionar":
                         echo"presionaste btn seleccionar";
                         $accionAgregar="disabled";
                         $accionModificar=$accionEliminar=$accionCancelar="";
+                        $mostrarModal=true;
+
+                        $sentencia=$pdo->prepare("SELECT fotoTecnico FROM tecnicoss
+                        WHERE idTecnico=:idTecnico"); 
+                        $sentencia->bindParam(':idTecnico',$txtID);
+                        $sentencia->execute();
+                        $tecnicoss=$sentencia->fetch(PDO::FETCH_LAZY);
+
+                        *
+                        $txtNombre=$tecnicoss['Nombre'];
+                        $txtApellidoP=$tecnicoss['ApellidoP'];
+                        $txtApellidoM=$tecnicoss['ApellidoM'];
+                        $txtCorreo=$tecnicoss['Correo'];
+                        $txtDepartamento=$tecnicoss['Departamento'];
+                        $txtFoto=$tecnicoss['Foto'];
+
+                        *
+
                         break;
 }
 
@@ -293,8 +313,8 @@ $listaTecnicos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
             <input type="hidden" name="txtDepartamento"value="<?php echo $tecnicoss['departamento'];?>">
             <input type="hidden" name="txtFoto"value="<?php echo $tecnicoss['fotoTecnico'];?>";>
 
-            <input  type="submit" value="Seleccionar" name="accion">
-            <button value="btnEliminar" type="submit" name="accion">Eliminar</button>
+            <input  type="submit" value="Seleccionar" class="btn btn-info" name="accion">
+            <button value="btnEliminar" type="submit" class="btn btn-danger" name="accion">Eliminar</button>
             </form>
 
             
@@ -307,6 +327,11 @@ $listaTecnicos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
     </table>
 
 </div>
+        <?php if($mostrarModal){?>
+        <script>
+        $('#exampleModal').modal('show');
+        </script>
+        <?php }?>
 </div>
 
 </body>
