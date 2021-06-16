@@ -5,6 +5,7 @@ require'Tecnicos.php';
 
 <!DOCTYPE html>
 <html lang="en">
+    
 <body>
 <head>
 
