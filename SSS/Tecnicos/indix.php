@@ -5,7 +5,6 @@ require'Tecnicos.php';
 
 <!DOCTYPE html>
 <html lang="en">
-    
 <body>
 <head>
 
@@ -98,14 +97,7 @@ require'Tecnicos.php';
                                             <br>
                                         </div>
 
-                                            <div class="form-group col-md-12">
-                                                <label for="">Departamento:</label>
-                                                <input type="text" class="form-control <?php echo (isset($error['Departamento']))?"is-invalid":"";?>"  name="txtDepartamento" required value="<?php echo $txtDepartamento;?>"placeholder="" id="txtDepartamento" require="">
-                                                <div class="invalid-feedback">
-                                                <?php echo (isset($error['Departamento']))?"is-invalid":"";?>
-                                                </div>
-                                                <br>
-                                            </div>
+                                            
 
                                                 <div class="form-group col-md-12">
                                                     <label for="">Foto:</label>
@@ -171,7 +163,7 @@ require'Tecnicos.php';
                 <th>Apellido Paterno</th>
                 <th>Apellido Materno</th>
                 <th>Correo</th>
-                <th>Departamento</th>
+              
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -183,7 +175,7 @@ require'Tecnicos.php';
             <td><?php echo $tecnicoss['apellidoP'];?></td>
             <td><?php echo $tecnicoss['apellidoM'];?></td>
             <td><?php echo $tecnicoss['correoTecnico'];?></td>
-            <td><?php echo $tecnicoss['departamento'];?></td>
+            
             <td>
             
             <form action="" method="post">
@@ -193,7 +185,7 @@ require'Tecnicos.php';
             <input type="hidden" name="txtApellidoP"value="<?php echo $tecnicoss['apellidoP'];?>">
             <input type="hidden" name="txtApellidoM"value="<?php echo $tecnicoss['apellidoM'];?>">
             <input type="hidden" name="txtCorreo"value="<?php echo $tecnicoss['correoTecnico'];?>">
-            <input type="hidden" name="txtDepartamento"value="<?php echo $tecnicoss['departamento'];?>">
+            
             <input type="hidden" name="txtFoto"value="<?php echo $tecnicoss['fotoTecnico'];?>";>
 
             <input  type="submit" value="Seleccionar" class="btn btn-info" name="accion">
@@ -225,13 +217,6 @@ require'Tecnicos.php';
 
 </body>
 </html>
-
-
-
-
-
-
-
 
 
 

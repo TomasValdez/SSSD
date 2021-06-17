@@ -6,7 +6,7 @@ $txtNombre=(isset($_POST['txtNombre']))?$_POST['txtNombre']:"";
 $txtApellidoP=(isset($_POST['txtApellidoP']))?$_POST['txtApellidoP']:"";
 $txtApellidoM=(isset($_POST['txtApellidoM']))?$_POST['txtApellidoM']:"";
 $txtCorreo=(isset($_POST['txtCorreo']))?$_POST['txtCorreo']:"";
-$txtDepartamento=(isset($_POST['txtDepartamento']))?$_POST['txtDepartamento']:"";
+
 $txtFoto=(isset($_FILES['txtFoto']["name"]))?$_FILES['txtFoto']["name"]:"";
 
 $accion=(isset($_POST['accion']))?$_POST['accion']:"";
@@ -51,13 +51,13 @@ switch($accion){
         }
         */
             
-        $sentencia=$pdo->prepare("INSERT INTO tecnicoss(nombreTecnico,apellidoP,apellidoM,correoTecnico,departamento,fotoTecnico) VALUES(:nombreTecnico,:apellidoP,:apellidoM,:correoTecnico,:departamento,:fotoTecnico)");
+        $sentencia=$pdo->prepare("INSERT INTO tecnicoss(nombreTecnico,apellidoP,apellidoM,correoTecnico,fotoTecnico) VALUES(:nombreTecnico,:apellidoP,:apellidoM,:correoTecnico,:fotoTecnico)");
        
         $sentencia->bindParam(':nombreTecnico',$txtNombre);
         $sentencia->bindParam(':apellidoP',$txtApellidoP);
         $sentencia->bindParam(':apellidoM',$txtApellidoM);
         $sentencia->bindParam(':correoTecnico',$txtCorreo);
-        $sentencia->bindParam(':departamento',$txtDepartamento);
+        
 
         $Fecha= new DateTime();
         $nombreArchivo=($txtFoto!="")?$Fecha->getTimestamp()."_".$_FILES["txtFoto"]["name"]:"imagen.jpg";
@@ -80,8 +80,7 @@ switch($accion){
         $sentencia=$pdo->prepare("UPDATE tecnicoss 
         SET nombreTecnico=:nombreTecnico,
         apellidoP=:apellidoP,apellidoM=:apellidoM,
-        correoTecnico=:correoTecnico,
-        departamento=:departamento
+        correoTecnico=:correoTecnico
          WHERE idTecnico=:idTecnico");
         
        
@@ -89,7 +88,7 @@ switch($accion){
         $sentencia->bindParam(':apellidoP',$txtApellidoP);
         $sentencia->bindParam(':apellidoM',$txtApellidoM);
         $sentencia->bindParam(':correoTecnico',$txtCorreo);
-        $sentencia->bindParam(':departamento',$txtDepartamento);
+        
         $sentencia->bindParam(':idTecnico',$txtID);
         $sentencia->execute();
 
