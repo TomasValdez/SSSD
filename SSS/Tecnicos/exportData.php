@@ -1,47 +1,26 @@
 <?php
 
-require "../Conexion/Conexion.php";
+include("../Conexion/Conexion.php");
 
+$sql="SELECT* FROM tecnicoss";
+$ejecutar=mysqli_query($conexion, $sql);
+while($mysql_fetch_array($ejecutar)){
+  
+  ?>
+  
+  <tr>
+    <td><? php echo $fila[0] ?></td>
+    <td><? php echo $fila[1] ?></td>
+    <td><? php echo $fila[2] ?></td>
+    <td><? php echo $fila[3] ?></td>
+    <td><? php echo $fila[4] ?></td>
+    <td><? php echo $fila[5] ?></td>
+  </tr>
 
-header ('Content-Type: text/csv; charset=utf-8');
-header('Content-Disposition: attachment; filename=BackupSolicitud.csv');
+  <?php} ?> 
+  
+  <br><br>
+  <a href="./excel.php" class="btn-small blue">Descargar excel</a>
 
-$output=fopen("php://output","w");
-
-
-$sql=$connec->conexion();
-$smtp=$sql->prepare("SELECT  reg.* ,concat(Nombre,' ',ApellidoP,' ',ApellidoM) 
-as nombre from registro reg left JOIN tecnico tec on  reg.idTecnico=tec.idTecnico" );
-$smtp->execute();
-
-  $result=$smtp->fetchall(PDO::FETCH_ASSOC);
-
-fputcsv($output,array("idRegistro",
-"CorreoSolicitane",
-"Tecnico",
-"TipoServicio",
-"status",
-"FechaRegistro",
-));
-
-foreach ( $result as $row  ){
-    /*
-    echo $row['idRegistro'];
-    echo $row['CorreoSolic'];
-    echo $row['idTecnico'];
-    echo $row['TipoS'];
-    echo $row['statusS'];
-    echo $row['FechaR'];
-*/
-fputcsv($output,array(
-$row['idRegistro'],  
-$row['CorreoSolic'],
-$row['nombre'],
-$row['TipoS'],
-$row['statusS'],
-$row['FechaR'],
-),",", '"');
 }
 
-
-fclose($output);

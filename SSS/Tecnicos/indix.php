@@ -166,10 +166,10 @@ require'Tecnicos.php';
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   Agregar Tecnico
 </button>
-<button type="button" class="btn btn-success" Onclick="exportData.php">
+<button type="submit" class="btn btn-success" href="exportData.php">
   Exportar datos
 </button>
-<a button type="button" class="btn btn-danger" href="../prueba/index.php">
+<a button type="submit" class="btn btn-danger" href="../prueba/index.php">
   Salir
 </button></a>
 <br>
