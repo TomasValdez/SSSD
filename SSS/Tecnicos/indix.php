@@ -13,7 +13,7 @@ require'Tecnicos.php';
     <div class="logo-head">
         <div class="logo-item">
                     <a href="https://cenidet.tecnm.mx/">  
-                    <img src="../Source/img/Logo_CENIDET (1).png" class="img-logo"></a>
+                    <img src="../Source/img/Logo.png" class="img-logo"></a>
             
             </div>
         <div class="logo-item">
@@ -96,9 +96,38 @@ require'Tecnicos.php';
                                             </div>
                                             <br>
                                         </div>
-
+                                         <!--           
+                                            <div class="form-group col-md-12">
+                                            <label for="">Habilidades:</label>
+                                            <br>
                                             
-
+                                            <td>
+                                            
+                                            <input type="checkbox" name="habilidad[]" class="form control" value="SoporteTecnico">
+                                            <label for="">Soporte Tecnico</label></td>
+                                            <br>
+                                            <td>
+                                            
+                                            <input type="checkbox" name="habilidad[]" class="form control" value="SII">
+                                            <label for="">SII</label></td>
+                                            
+                                            <td>
+                                            <input type="checkbox" name="habilidad[]" class="form control" value="SoporteSoftware">
+                                            <label for="">Soporte en Software</label></td>
+                                            
+                                            <td>
+                                            <input type="checkbox" name="habilidad[]" class="form control" value="SoporteImpresora">
+                                            <label for="">Soporte a Impresoras</label></td>
+                                            <br>
+                                            <td>
+                                            <input type="checkbox" name="habilidad[]" class="form control" value="SoporteTelefonia">
+                                            <label for="">Soporte Telefonia</label></td>
+                                            
+                                            <td>
+                                            <input type="checkbox" name="habilidad[]" class="form control" value="SoporteGeneral">
+                                            <label for="">Conocimiento General</label></td>
+                                            </div> -->
+                                            
                                                 <div class="form-group col-md-12">
                                                     <label for="">Foto:</label>
                                                     <?php if($txtFoto!=""){?>
@@ -137,7 +166,7 @@ require'Tecnicos.php';
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   Agregar Tecnico
 </button>
-<button type="button" class="btn btn-success">
+<button type="button" class="btn btn-success" Onclick="exportData.php">
   Exportar datos
 </button>
 <a button type="button" class="btn btn-danger" href="../prueba/index.php">

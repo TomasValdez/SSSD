@@ -11,12 +11,36 @@
 <link rel="stylesheet" href="normalize.css">
 <link rel="stylesheet" href="index.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootsrap.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <head><title>index</title></head>
+<?php
+require'../Tecnicos/crud_login.php';
 
+?>
 <body>
     <div class="main-windows"> 
     <header>
-    <?php include "banner_tenc.php";?>
+    <div class="logo-head">
+        <div class="logo-item">
+                    <a data-bs-toggle="modal" href="#exampleModalToggle" role="button">  
+                    <img src="../Source/img/Logo.png" class="img-logo"></a>
+            
+            </div>
+        <div class="logo-item">
+                    <img src="../Source/img/tecnm.png" class="img-logo2">
+            </div>
+        
+            <div class="logo-item"><h2> TECNOLOGICO NACIONAL DE MEXICO</h2>
+            
+            </div>
+    </div>
     </header>
 <div class="content-reparation">
     

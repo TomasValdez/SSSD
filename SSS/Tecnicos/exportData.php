@@ -1,7 +1,7 @@
 <?php
 
-require "../Model/conecct.php";
-$connec=new Connection_db();
+require "../Conexion/Conexion.php";
+
 
 header ('Content-Type: text/csv; charset=utf-8');
 header('Content-Disposition: attachment; filename=BackupSolicitud.csv');
@@ -22,10 +22,6 @@ fputcsv($output,array("idRegistro",
 "TipoServicio",
 "status",
 "FechaRegistro",
-'FechaL',
-'Valoracion',
-'Comentario',
-'Activacion',
 ));
 
 foreach ( $result as $row  ){
@@ -36,10 +32,6 @@ foreach ( $result as $row  ){
     echo $row['TipoS'];
     echo $row['statusS'];
     echo $row['FechaR'];
-    echo $row['FechaL'];
-    echo $row['Valoracion'];
-    echo $row['Comentario'];
-    echo $row['Activacion'];
 */
 fputcsv($output,array(
 $row['idRegistro'],  
@@ -48,10 +40,6 @@ $row['nombre'],
 $row['TipoS'],
 $row['statusS'],
 $row['FechaR'],
-$row['FechaL'],
-$row['Valoracion'],
-$row['Comentario'],
-$row['Activacion'],
 ),",", '"');
 }
 
