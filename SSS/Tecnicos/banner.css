@@ -1,0 +1,34 @@
+.logo-head {
+    display: grid;
+    width: 100%;
+    /*width: 480px;
+    */grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
+    background-color: rgba(23, 10, 141, 0.9);
+    text-align: center;
+}
+
+.img-logo {
+    max-width: 270px;
+    max-height: 170px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.img-logo2 {
+    display: block;
+    position: relative;
+     width: 100px;
+    height: 100px;
+    top: 0px;
+}
+.logo-item:nth-child(3) {
+    display: flex;
+    text-align: center;
+    justify-items: center;
+    align-content: center;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: auto;
+    margin-top: auto;
+}

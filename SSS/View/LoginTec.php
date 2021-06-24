@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 <?php require "../include/login-banner.php";?>
 
 <script >
@@ -11,6 +12,15 @@ clickSend.addEventListener('click', function(e) {
     clickSend.classList.replace("idbutton", "idbutton-no");
 
     divLoad.classList.replace("vis-circle-no","vis-circle");
+=======
+  
+    <meta charset="UTF-8">
+    <title>Login / Sistema Solicitudes de Servicio</title>
+    <link rel="icon" type="img/jpg" href="../Source/img/icon.jpg">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    
+    <link rel="stylesheet" href="../Source/css/login.css">
+>>>>>>> bb692f3e362ba0ed2033027b8e5fefb085df11e9
     
 
     $.ajax({

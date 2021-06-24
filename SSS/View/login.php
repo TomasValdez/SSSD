@@ -1,6 +1,7 @@
 <?php  require "../include/login-banner.php";
 session_start();
 
+<<<<<<< HEAD
 if (isset($_POST['mail'])){
     session_reset();
     session_unset();
@@ -25,6 +26,20 @@ query();
 
 function query()
 {
+=======
+  
+    <meta charset="UTF-8">
+    <title>Login / Sistema Solicitudes de Servicio</title>
+    
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    
+    <link rel="icon" type="img/jpg" href="../Source/img/icon.jpg">
+    <link rel="stylesheet" href="../Source/icon/log_Style.css">
+    <link rel="stylesheet" href="../Source/css/css/log_Style.css">
+    
+</head>
+<body>
+>>>>>>> bb692f3e362ba0ed2033027b8e5fefb085df11e9
     
     clickSend.classList.replace("idbutton", "idbutton-no");
 

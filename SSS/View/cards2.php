@@ -1,6 +1,18 @@
 <?php 
 
+<<<<<<< HEAD
 /*  MIRA, SI PODRIAS  COLOR LOS CARDS DE CADA UNO COMO ESTAS EN ESTOS EJEMPLOS 
+=======
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="../Source/css/oficial.css">
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Pragati+Narrow&display=swap" rel="stylesheet">    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+>>>>>>> bb692f3e362ba0ed2033027b8e5fefb085df11e9
 
 POR QUE HAY UNA CONSULTA ABAJO Y UNO ARRAY DE ESTOS 
 
